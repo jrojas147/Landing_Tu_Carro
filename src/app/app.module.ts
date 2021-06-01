@@ -46,7 +46,7 @@ registerLocaleData(localeEs, 'es');
     MensajeErrorComponent,
     SpeedometerComponent,
     UrlSeguraPipe,
-
+    NoFinanciableComponent
   ],
   imports: [
     BrowserModule,
