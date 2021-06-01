@@ -1,0 +1,165 @@
+<div class="contenedor">
+  <app-modaltyc *ngIf="apiMercadolibre.mostrarModalTyc" [@animationFadeOut]="apiMercadolibre.mostrarModalTyc">
+  </app-modaltyc>
+  <mat-horizontal-stepper [disableRipple]="true" linear *ngIf="infoVehiculo && resultadoCalculadora.resultadoCuota"
+    #stepper>
+
+    <mat-step [stepControl]="primero" [editable]="editable">
+      <div class="noDesk">
+        <div class="tituloPaso">Calcula tu cuota</div>
+        <hr>
+      </div>
+      <form [formGroup]="primero">
+        <ng-template matStepLabel>Calcula tu cuota</ng-template>
+
+        <div class="contCampoUno">
+          <div>
+            <p class="tituloCampo">Costo total del vehiculo</p>
+            <p class="cifra">{{ infoVehiculo.price | number:'1.0':'es'}}</p>
+          </div>
+        </div>
+
+        <mat-label>Cuota inicial (Porcentaje {{porcentaje | number:'1.0-1':'es'}}%)</mat-label>
+        <mat-form-field appearance="outline" class="full-width">
+          <input
+            class="ctaInicial" 
+            type="cel" 
+            matInput 
+            currencyMask 
+            placeholder="Cuota inicial"
+            [options]="{ align: 'left', prefix: '$ ', suffix: '', thousands: '.', decimal: ',', precision: 0 }"
+            [maxlength]="maxLengthHolderCuotaInicial"
+            formControlName="cuotaInicial" 
+            (ngModelChange)="cuotaInicialChange(primero.get('cuotaInicial').value)"
+            required>    
+          <!--Joan-->
+        </mat-form-field>
+        <mat-error *ngIf="isNoValidMonto">El valor ingresado supera el valor del vehiculo</mat-error><!--Joan-->
+        <mat-error *ngIf="isNoValidCuotaInicial">No puede ser menor a la cuota inicial</mat-error><!--Joan-->
+
+        <div class="contCampoDos">
+          <div>
+            <p class="tituloCampo">Valor total a financiar</p>
+            <p class="cifra">$ {{ resultadoCalculadora.resultadoCuota[0].valorTotalFinanciar | number:'1.0':'es'}}</p>
+          </div>
+          <div>
+            <p class="tituloCampo">Tasa Aproximada</p>
+            <p class="cifra">Desde {{ resultadoCalculadora.resultadoCuota[0].nmv * 100 | number:'1.0-2':'es'}}% NMV</p>
+            <p class="menuda">Sujeto a perfil de cliente*</p>
+          </div>
+        </div>
+
+        <div class="contCampoUno">
+          <p id="cuotas" class="tituloCampo cuotas">Selecciona el número de cuotas</p>
+          <app-speedometer *ngIf="isSpeed" [modelCarro]="modeloVehiculo"></app-speedometer>
+        </div>
+
+        <div class="contBoton center">
+          <button id="stepOne" mat-button matStepperNext [disabled]="primero.status === 'INVALID' || 
+              (isNoValidMonto || isNoValidCuotaInicial)">Financiar mi {{
+            infoVehiculo.title | primeraPalabra }}</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Segundo Formulario -->
+
+    <mat-step [stepControl]="segundo" [editable]="editable">
+      <div class="noDesk">
+        <div class="tituloPaso">Ingresa tus datos</div>
+        <hr>
+      </div>
+      <form [formGroup]="segundo" class="segundo">
+        <ng-template matStepLabel>Ingresa tus datos</ng-template>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>¿Cómo te llamas?</mat-label>
+          <input matInput formControlName="Nombre" placeholder="¿Cómo te llamas?*"
+            (keypress)="patternCoincide($event, const.patternLetter)" required>
+          <mat-error *ngIf="nombreNovalido">Necesitamos saber tu nombre, diligencia tu nombre completo</mat-error>
+        </mat-form-field>
+
+        <div id="segundo" class="contCampoDos">
+
+          <mat-form-field id="dobleInput" class="full-width" appearance="outline">
+            <mat-label>Tipo de Identificación</mat-label>
+            <select matNativeControl formControlName="TipoDocumento">
+              <option *ngFor="let obj of const.tipoDocumento" [ngValue]="obj.value" [disabled]="obj.value == 0"
+                required>
+                {{obj.name}}</option>
+            </select>
+            <mat-error *ngIf="tipoIdNoValido">Elige una opción</mat-error>
+          </mat-form-field>
+
+          <mat-form-field id="dobleInput" appearance="outline" class="full-width">
+            <mat-label>Nro. de identificación</mat-label>
+            <input matInput type="tel" formControlName="NumeroDocumento" placeholder="Nro. de identificación*"
+              (keypress)="patternCoincide($event, const.patternNumber)"
+              [maxlength]="segundo.controls['TipoDocumento'].value == 2 ? 6 : null" required>
+            <mat-error *ngIf="idNoValido">Diligencia este campo</mat-error>
+            <div class="advertencia" *ngIf="documentoExtranjeria">¡Por favor verifica si es una cédula de extranjeria!
+            </div>
+          </mat-form-field>
+
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Número de celular</mat-label>
+          <input matInput type="tel" maxlength="10" formControlName="Celular" placeholder="Número de celular*"
+            (keypress)="patternCoincide($event, const.patternNumber)" required>
+          <mat-error *ngIf="celularNoValido">Necesitamos saber tu celular, diligencia un número de celular válido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput formControlName="CorreoPersonal" placeholder="Correo electrónico*" required>
+          <mat-error *ngIf="correoNoValido">Necesitamos saber tu correo electronico, diligencia un correo electronico
+            válido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Selecciona tu ocupación</mat-label>
+          <select matNativeControl formControlName="ActividadEconomica">
+            <option *ngFor="let obj of const.ocupaciones" [ngValue]="obj.value" [disabled]="obj.value == 0" required>
+              {{obj.name}}</option>
+          </select>
+          <mat-error *ngIf="actividadEconomicaNoValido">Necesitamos saber ocupación</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>¿Cuáles son tus ingresos mensuales?</mat-label>
+          <input matInput type="tel" currencyMask placeholder="¿Cuáles son tus ingresos mensuales?*"
+            [options]="{ align: 'left', prefix: '$ ', suffix: '', thousands: '.', decimal: ',', precision: 0 }"
+            formControlName="IngresoMensual" (keypress)="patternCoincide($event, const.patternNumber)" required>
+          <mat-error *ngIf="ingresoMensualNoValido">Necesitamos saber tus ingresos mensuales</mat-error>
+          <mat-error *ngIf="segundo.get('IngresoMensual').errors?.min">Los ingresos deben ser mayores a $
+            {{const.valorMinIngreso | number:'1.0':'es' }}</mat-error>
+        </mat-form-field>
+
+        <div id="check" class="contCampoUno center">
+
+          <mat-checkbox required color="primary" value="" formControlName="AutorizaConsultaCentrales"></mat-checkbox>
+          Acepto los <a href="https://santanderconsumer.co/tyccu/" target="_blank"><strong class="pointer">términos y
+              condiciones</strong></a>
+
+        </div>
+
+        <!-- Acepto los <strong class="pointer" (click)="apiMercadolibre.mostrarModalTyc=true">términos y condiciones</strong> -->
+
+        <div>
+          <div class="contBoton center">
+            <button id="stepTwo" mat-button matStepperNext (click)="autenticar()" [disabled]="segundo.invalid">Comprobar
+              mis datos</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Tercer Paso -->
+
+    <mat-step [editable]="false">
+      <ng-template matStepLabel>Respuesta inmediata</ng-template>
+      <app-respuesta></app-respuesta>
+    </mat-step>
+  </mat-horizontal-stepper>

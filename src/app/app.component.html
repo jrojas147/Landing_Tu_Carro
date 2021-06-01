@@ -1,0 +1,28 @@
+<app-splash *ngIf="splash" [@animationFadeOut]="splash"></app-splash>
+<app-cargador *ngIf="centralesRiesgo.cargador" [@animationFadeOut]="centralesRiesgo.cargador"></app-cargador>
+<div class="superContenedor">
+  <app-encabezado></app-encabezado>
+  <div class="contenedor">
+    <!-- errorApi -->
+    <app-viabiliza-vehiculo *ngIf="!apiMercadolibre.errorApi || !splash || centralesRiesgo.respuestaId !== -1"
+      [@animationFadeOut]="!apiMercadolibre.errorApi || !splash || centralesRiesgo.respuestaId !== -1">
+    </app-viabiliza-vehiculo>
+    <app-mensaje-error *ngIf="apiMercadolibre.idVehiculo == undefined || apiMercadolibre.errorApi"
+      [@animationFadeOut]="apiMercadolibre.errorApi"></app-mensaje-error>
+  </div>
+
+  <div class="msjEnriquecido" *ngIf="scanParams.enriquecido">
+    <div></div>
+    <div class="msjContenido">
+      <b>Obtén tu crédito y tendrás acceso a vehículos validados por Santander con los que tienes:</b>
+      <ul>
+        <li>Tranquilidad: Recibe un reporte originado con la información contenida en la base de datos RUNT para que
+          verifiques el carro antes de elegirlo</li>
+        <li>Confianza: Obtén descuento en peritaje con nuestros aliados para que evalúes el carro antes de comprarlo
+        </li>
+        <li>Seguridad: Tu dinero sólo es desembolsado al comprador cuando el vehículo esté a tu nombre</li>
+      </ul>
+    </div>
+    <div></div>
+  </div>
+</div>

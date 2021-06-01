@@ -1,0 +1,47 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/mixins";
+
+
+
+.contenido{
+  display: grid;
+   padding: 14% 10%;
+  @include Asmall(){
+      padding: 4%;
+  }
+  .No_viable{
+    height: auto;
+     width: 50% !important;
+     padding: 10px;
+     margin: auto;
+     border-radius: 5px;
+  }
+  .comentario{
+    font-size: 12px;
+    padding: 2.6% 0;
+    text-align: center;
+}
+  .mensajeNoViable{
+    margin: auto;
+
+  }
+
+
+}
+
+// img.negado{
+//     width: 35% !important;
+//     padding: 10px;
+// // }
+
+
+
+// img{
+//   width: 100%;
+//   /* padding: 130px 130px 0px 130px; */
+//   @include Asmall(){
+//       padding: 40px 20px 0;
+//   }
+//   @include smallTablet(){
+//       padding: 40px 20px 0;
+//   }

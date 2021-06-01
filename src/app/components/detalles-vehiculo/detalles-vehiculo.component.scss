@@ -1,0 +1,67 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.contenedor{
+    .titulo{
+        padding: 27px;
+    }
+}
+
+.contenido{
+    font-size: 12px;
+    background-color: $color-blanco;
+    border-top-left-radius: $radio-borde;
+    border-bottom-left-radius: $radio-borde;
+    display: grid;
+    grid-template-columns: 9% auto 9%;
+    box-shadow: -1px 1px 5px 0px #e0e0e0;
+    padding: 4% 0;
+    border-right: solid 1px #e0e0e0;
+    @include Asmall(){
+        grid-template-columns: auto;
+        box-shadow: none;
+        background-color: transparent;
+        padding: 0 0 4% 0;
+        border-right: solid 1px transparent;
+    }
+    img{
+        border-top-left-radius: $radio-borde;
+        border-top-right-radius: $radio-borde;
+        margin: 7% 0 0 0;
+        width: 100%;
+        @include Asmall(){
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            margin: 0px;
+        }
+    }
+    .detallesTecnicos{
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        grid-template-rows: repeat(2, auto);
+        background-color: $color-grisTres;
+        row-gap: 3px;
+        padding: 10px 0px 10px 20px;
+        border-bottom-left-radius: $radio-borde;
+        border-bottom-right-radius: $radio-borde;
+        @include Asmall(){
+            display: none;
+        }
+    }
+    app-footer{
+        margin: 10% 0 7% 0;
+        @include Asmall(){
+            display: none;
+        }
+    }
+}
+
+img, .detallesTecnicos, app-footer{
+    grid-column: 2;
+}
+
+.titulo{
+    @include Asmall(){
+        background-image: linear-gradient(172deg, $color-blanco, transparent);
+    }
+}

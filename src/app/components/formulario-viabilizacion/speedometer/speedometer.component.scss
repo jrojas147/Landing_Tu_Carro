@@ -1,0 +1,262 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/mixins";
+
+.contenido {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  .radioGroup,
+  .radioGroup2,
+  .radioGroup3,
+  .contMedidor,
+  img {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    justify-self: center;
+  }
+  .radioGroup {
+    margin-bottom: 0%;
+    @include Asmall {
+      margin-bottom: 25%;
+    }
+  }
+  .radioGroup2 {
+    margin-bottom: 0%;
+    @include Asmall {
+      margin-bottom: 25%;
+    }
+  }
+  .radioGroup3 {
+    margin-bottom: 0%;
+    @include Asmall {
+      margin-bottom: 25%;
+    }
+  }
+  img {
+    width: 60%;
+    padding-top: 8%;
+    @include Asmall() {
+      width: 80%;
+      padding-top: 0%;
+    }
+  }
+}
+
+.radioGroup {
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 100%;
+  height: 100%;
+  #cuatroOcho {
+    grid-row: 2;
+    grid-column: 2;
+    align-self: center;
+    justify-self: left;
+    @include Asmall() {
+      grid-row: 1/5;
+      grid-column: 1/2;
+      justify-self: center;
+    }
+  }
+  #seisCero {
+    grid-row: 1;
+    grid-column: 3;
+    align-self: center;
+    justify-self: left;
+    @include Asmall() {
+      grid-column: 2/4;
+      grid-row: 1/3;
+      justify-self: center;
+    }
+  }
+  #sieteDos {
+    grid-row: 1;
+    grid-column: 4;
+    align-self: center;
+    justify-self: right;
+    @include Asmall() {
+      grid-column: 4/6;
+      grid-row: 1/3;
+      justify-self: center;
+    }
+  }
+  #ochoCuatro {
+    grid-row: 2;
+    grid-column: 5;
+    align-self: center;
+    justify-self: right;
+    @include Asmall() {
+      grid-row: 2/4;
+      grid-column: 5/7;
+      justify-self: right;
+    }
+  }
+}
+
+.radioGroup input[type="radio"] {
+  opacity: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+.radioGroup label {
+  border: solid 5px #ddd;
+  padding: 8px;
+  font-family: Arial;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 22%;
+  border-radius: 60%;
+  @include full() {
+    font-size: 18px;
+    border: solid 8px #ddd;
+  }
+}
+
+.radioGroup2 {
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 100%;
+  height: 100%;
+  #cuatroOcho {
+    grid-row: 2;
+    grid-column: 2;
+    align-self: center;
+    justify-self: left;
+    @include Asmall() {
+      grid-row: 1/5;
+      grid-column: 1/2;
+      justify-self: center;
+    }
+  }
+  #seisCero {
+    grid-row: 2;
+    grid-column: 5;
+    align-self: center;
+    justify-self: right;
+    @include Asmall() {
+      grid-row: 1/5;
+      grid-column: 6/6;
+      justify-self: left; 
+    }
+  }
+}
+
+.radioGroup2 input[type="radio"] {
+  opacity: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+.radioGroup2 label {
+  border: solid 5px #ddd;
+  padding: 8px;
+  font-family: Arial;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 22%;
+  border-radius: 60%;
+  @include full() {
+    font-size: 18px;
+    border: solid 8px #ddd;
+  }
+}
+
+.radioGroup3 {
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 100%;
+  height: 100%;
+  #cuatroOcho {
+    grid-row: 2;
+    grid-column: 2;
+    align-self: center;
+    justify-self: left;
+    @include Asmall() {
+      grid-row: 1/5;
+      grid-column: 1/2;
+      justify-self: center;
+    }
+  }
+  #seisCero {
+    grid-row: 1;
+    grid-column: 3;
+    align-self: center;
+    justify-self: right;
+    margin-right: -22px;
+    @include Asmall() {
+      grid-column: 3/4;
+      grid-row: 1/3;
+      justify-self: right;
+    }
+  }
+  #sieteDos {
+    grid-row: 2;
+    grid-column: 5;
+    align-self: center;
+    justify-self: right;
+    @include Asmall() {
+      grid-row: 1/5;
+      grid-column: 6/6;
+      justify-self: left;
+    }
+  }
+}
+
+.radioGroup3 input[type="radio"] {
+  opacity: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+.radioGroup3 label {
+  border: solid 5px #ddd;
+  padding: 8px;
+  font-family: Arial;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 22%;
+  border-radius: 60%;
+  @include full() {
+    font-size: 18px;
+    border: solid 8px #ddd;
+  }
+}
+
+.radioControl {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  input[type="radio"],
+  label {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    justify-self: center;
+  }
+}
+
+input[type="radio"]:checked + label {
+  border: solid 5px #06bbff;
+  box-shadow: -1px 1px 5px 0px #e0e0e0;
+  @include full() {
+    font-size: 18px;
+    border: solid 8px #06bbff;
+  }
+}
+
+.contMedidor {
+  p {
+    color: #a8abb0;
+  }
+}

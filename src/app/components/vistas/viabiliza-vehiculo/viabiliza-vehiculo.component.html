@@ -1,0 +1,10 @@
+<div class="contenedor">
+    <div class="contenido">
+        <app-detalles-vehiculo *ngIf="!apiMercadolibre.desaparecerDetallesMobile"></app-detalles-vehiculo>
+        <app-formulario-viabilizacion *ngIf="isViable"></app-formulario-viabilizacion>
+        <app-no-financiable *ngIf="noViable"></app-no-financiable>
+    </div>
+    <footer class="noDesk center">
+        <img [src]="const.logoMobileStd" alt="">
+    </footer>
+</div>

@@ -1,0 +1,20 @@
+<div *ngIf="infoVehiculo" class="contenedor">
+
+    <div class="titulo">
+        <p>
+            Estás muy cerca de tener tu <b>{{ infoVehiculo.title }}</b>
+        </p>
+        <p class="subtitulo noMobile">
+            Bienvenido a la plataforma de financiación de Santander Consumer Colombia
+        </p>
+    </div>
+
+    <div class="contenido" *ngIf="infoVehiculo" [@animationFadeOut]="infoVehiculo">
+        <img [src]="infoVehiculo.pictures[0].url | urlSegura" alt="">
+        <div class="detallesTecnicos">
+            <div class="itemInfo" *ngFor="let item of informacion">
+                <b>{{item.nombre}}:</b> {{item.valor}}</div>
+            </div>        
+        <app-footer></app-footer>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
+
+.contenido{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    @include Asmall(){
+        grid-template-columns: auto;
+        grid-template-rows: 1fr;
+    app-detalles-vehiculo{
+        grid-row: 1;
+    }
+    app-formulario-viabilizacion{
+        grid-row: 2;
+    }    
+    }
+}

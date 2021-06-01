@@ -1,0 +1,37 @@
+@import '../scss/variables';
+@import "../scss/mixins";
+
+.superContenedor{
+    background-color: $color-grisUno;
+    .contenedor{
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+        padding: 0% 5% 0% 5%;
+        @include Asmall(){
+            padding: 0;
+            margin-top: 10vh;
+        }
+
+        app-mensaje-error{            
+            z-index: 1;
+            margin-top: 5%;
+        }
+
+        app-mensaje-error , app-viabiliza-vehiculo{
+            grid-row: 1;
+            grid-column: 1;
+        }
+    }
+}
+
+.msjEnriquecido{
+    margin: 20px 30px 30px 30px;
+    font-size: 12px;
+    @include laptopDesktop(){
+        padding: 0 5%;
+    }
+    @include desktopFull(){
+        padding: 0 5%;
+    }
+}

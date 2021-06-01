@@ -1,0 +1,293 @@
+@import "./variables";
+@import "./mixins";
+@import "./fonts";
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: all 0.5s;
+    font-family: Open Sans;
+  }
+
+  app-root{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    app-cargador, app-splash, .superContenedor{
+      grid-row: 1;
+      grid-column: 1;
+    }
+  }
+
+  .advertencia{
+    color: orange;
+    font-size: 9px;
+  }
+
+  /* Linea Vertical */
+  .vl {
+    border-left: 1px solid $color-grisDos;
+    height: auto;
+  }
+
+  app-cargador{
+    z-index: 3;
+  }
+
+  app-splash{
+    z-index: 5;
+  }
+
+.titulo{
+  font-size: 15px;
+}
+.subtitulo{
+  font-size: 13px;
+  color: $color-grisDos;
+}
+
+/* Estilos especificos Stepper Material */
+.mat-horizontal-stepper-header-container{
+  display: grid !important;
+  grid-template-columns: repeat(3, auto) !important;
+  grid-template-rows: 1fr !important;
+  padding: 20px 80px 0 80px; 
+  @include Asmall(){
+    padding: 0px 5%;
+    margin: 0 auto;
+  }
+}
+
+.mat-step-icon .mat-icon, .mat-step-icon-content{
+  text-align: center;
+}
+
+.mat-horizontal-stepper-header{
+  display: grid !important;
+  align-self: center !important;
+  justify-self: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.mat-step-header{
+  grid-row: 1 !important;
+  align-self: center !important;
+  justify-self: center !important;
+}
+
+.mat-step-header .mat-step-header-ripple{
+  position: relative !important;
+  display: grid !important;
+  padding-top: 15px;
+}
+
+.mat-horizontal-stepper-header .mat-step-icon{
+  align-self: center !important;
+  justify-self: center !important;
+  margin: 0px !important;
+}
+
+.mat-step-icon .mat-icon, .mat-step-icon-content {
+  font-size: 11px !important;
+}
+
+/* Línea */
+.mat-stepper-horizontal-line{
+  border: 1px solid !important;
+  grid-row: 1 !important;
+  margin: 0 -70px !important;
+  @include Asmall(){
+    margin: 0 -50px !important;
+  }
+}
+
+.mat-error{
+  display: grid !important;
+  font-size: 9px !important;
+}
+
+.mat-stepper-horizontal{
+  background-color: transparent !important;
+}
+
+/* Colores selección Step */
+.mat-step-icon{
+  background-color: $color-negro !important;
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.mat-horizontal-stepper-header .mat-step-icon-selected{
+  background-color: $color-principal !important;
+  .mat-step-icon-content{
+    color: $color-negro;
+  }
+}
+
+.mat-step-header .mat-step-label.mat-step-label-active{
+  grid-row: 1;
+  font-size: 11px !important;
+}
+
+.full-width{
+  width: 100%;
+}
+
+.mat-horizontal-content-container{
+  background-color: $color-blanco;
+  padding: 0 !important;
+  min-height: 100vh;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-infix{
+  padding: 2% 0 2% 0 !important;
+  font-size: 15.2px !important;
+  @include Asmall(){
+    padding: 4% 0 4% 0 !important;
+  }
+}
+
+/*  */
+
+.center{
+  text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.mat-horizontal-content-container{
+  border-top-right-radius: $radio-borde !important; 
+  border-bottom-right-radius: $radio-borde !important;
+  box-shadow: 3px 1px 5px 0px #e0e0e0;
+  @include Asmall(){
+    border-radius: 10px !important;
+    margin: 4% !important;
+  } 
+}
+
+/* Radio Button Checked */
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+  border-color: $color-radio-checked !important;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple{
+  background-color: $color-radio-checked !important;
+}
+
+/* Border Mat-Input */
+.mat-form-field-appearance-outline .mat-form-field-outline{
+  color: $color-borde-inputs !important;
+}
+
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+  color: $color-alert !important;
+}
+
+/* Button */
+
+.mat-button{
+  background-color: $color-secundario !important;
+  color: $color-blanco !important;
+  border-radius: 20px !important;
+  padding: 1% 100px !important;
+  @include Asmall(){
+    padding: 1% 15% !important;
+  }
+}
+
+button#stepThreeNoImportant{
+  background: none !important;
+  color: $color-secundario !important;
+}
+
+span.mat-button-wrapper{
+  text-transform: uppercase !important;
+}
+
+.mat-button.mat-primary[disabled], .mat-button.mat-accent[disabled], .mat-button.mat-warn[disabled], .mat-button[disabled][disabled], .mat-icon-button.mat-primary[disabled], .mat-icon-button.mat-accent[disabled], .mat-icon-button.mat-warn[disabled], .mat-icon-button[disabled][disabled], .mat-stroked-button.mat-primary[disabled], .mat-stroked-button.mat-accent[disabled], .mat-stroked-button.mat-warn[disabled], .mat-stroked-button[disabled][disabled]{
+  background-color: $color-disabled-button !important;
+}
+
+.contBoton{
+  margin: 6% 0;
+  @include full(){
+    margin: 12% 0;
+  }
+}
+
+.mat-form-field-appearance-outline#dobleInput .mat-form-field-infix {
+  padding: 8% 0 2% 0 !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin: 0.1% 0 !important;
+}
+
+.mat-radio-label{
+  display: grid !important;
+  grid-template-rows: repeat(2, auto) !important;
+  .mat-radio-container, .mat-radio-label-content{
+    align-self: center !important;
+    justify-self: center !important;
+  }    
+}
+
+.mat-step-label{
+  grid-row: 1 !important;
+    font-size: 11px !important;
+    color: black !important;
+}
+
+/* Color Check */
+
+.mat-checkbox-indeterminate.mat-primary .mat-checkbox-background, .mat-checkbox-checked.mat-primary .mat-checkbox-background{
+  background: $color-checked !important;
+}
+
+/* Speedometer */
+
+.gauge-chart div svg {
+  height: 190px;
+  @include Asmall(){
+    height: 135px;
+  }
+}
+
+.gauge-chart div {
+  z-index: 1;
+}
+
+.noMobile{
+  @include Asmall(){
+    display: none;
+  }
+
+  @include smallTablet(){
+    display: none;
+  }
+}
+
+.noDesk{
+  @include tabletLaptop(){
+    display: none;
+  }
+  
+  @include laptopDesktop(){
+    display: none;
+  }
+
+  @include desktopFull(){
+    display: none;
+  }
+
+  @include full(){
+    display: none;
+  }
+}
+
+

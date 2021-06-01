@@ -1,0 +1,162 @@
+<div class="contenedor">
+    <div class="contenido">
+
+        <div class="respuesta" id="aprobado" [@animationFadeOut]="centralesRiesgo.respuestaId">
+
+                   
+            <!--  Preaprobado Contexto  -->
+            <!-- <div class="caso" *ngIf="centralesRiesgo.respuestaId == 2 && scanParams.enriquecido">
+                <img [src]="const.aprobado" alt="aprobado">
+                <p class="mensaje">
+                    ¡Felicitaciones! Tu crédito es viable
+                </p>
+                <p class="comentario">
+                    ¡Felicitaciones! Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado haciendo click en el botón o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592
+                </p>
+            </div> -->
+            
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 3 && !scanParams.enriquecido">
+                <img [src]="const.aprobado" alt="aprobado">
+                <p class="mensaje">
+                    Tu Solicitud es viable
+                </p>
+                <p class="comentario">
+                    Podemos financiar el 100% de tu vehículo<br>un asesor se comunicará contigo de inmediato.
+                </p>
+            </div>
+
+            <!-- Respuesta preaprobado No enriquecido -->
+
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 2 && !scanParams.enriquecido && (centralesRiesgo.variantePreaprobado == 2 || centralesRiesgo.variantePreaprobado == 21 || centralesRiesgo.variantePreaprobado == 22)">
+                <img [src]="const.negado" class="negado">
+                <p class="mensajeNeg">
+                    ¡Lo sentimos!
+                </p>
+                <p class="comentario">
+                    Tu solicitud no es viable en este momento.
+                </p>
+            </div>
+
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 2 && !scanParams.enriquecido && (centralesRiesgo.variantePreaprobado == 23 || centralesRiesgo.variantePreaprobado == 24 || centralesRiesgo.variantePreaprobado == 25 || centralesRiesgo.variantePreaprobado == 26)">
+                <img [src]="const.negado" class="negado">
+                <p class="mensaje">
+                    ¡Tu solicitud es viable!
+                </p>
+                <p class="comentario">
+                    Pronto uno de nuestros asesores se comunicará contigo para continuar la solicitud de crédito.
+                </p>
+            </div>
+
+            <!-- Respuesta Preaprobado enriquecido -->
+
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 2 && scanParams.enriquecido && (centralesRiesgo.variantePreaprobado == 2 || centralesRiesgo.variantePreaprobado == 22)">
+                <img [src]="const.negado" class="negado">
+                <p class="mensajeNeg">
+                    ¡Lo sentimos!
+                </p>
+                <p class="comentario">
+                    Tu solicitud no es viable en este momento.
+                </p>
+            </div>
+
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 2 && scanParams.enriquecido && centralesRiesgo.variantePreaprobado == 21">
+                <img [src]="const.aprobado" alt="aprobado">
+                <p class="mensaje">
+                    ¡Estás muy cerca de tener tu crédito aprobado! Para lograrlo debes enviar un correo a digital@santanderconsumer.co con los siguientes documentos:
+                </p>
+                <p class="comentario">
+                    1) Si eres empleado (permanente, por prestación de servicios o por obra/labor): Debes haber trabajado los últimos 12 meses, y debes enviar el/los certificado(s) que lo demuestren<br>
+                    2) Si eres independiente: Debes tener una trayectoria de al menos 2 años, y debes enviar Cámara de Comercio ó RUT, extractos bancarios de los últimos 3 meses y dos referencias comerciales (cartas de tus proveedores o clientes indicando tiempo de la relación y monto promedio de los pagos)
+                </p>
+            </div>
+
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 2 && scanParams.enriquecido && (centralesRiesgo.variantePreaprobado == 23 || centralesRiesgo.variantePreaprobado == 26)">
+                <img [src]="const.aprobado" alt="aprobado">
+                <p class="mensaje">
+                    ¡Felicitaciones!
+                </p>
+                <p class="comentario">
+                    Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado haciendo click en el boton o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592
+                </p>
+            </div>
+
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 2 && scanParams.enriquecido && (centralesRiesgo.variantePreaprobado == 24 || centralesRiesgo.variantePreaprobado == 25)">
+                <img [src]="const.aprobado" alt="aprobado">
+                <p class="mensaje">
+                    ¡Estás muy cerca de tener tu crédito aprobado! Para lograrlo debes enviar un correo a digital@santanderconsumer.co con los siguientes documentos:
+                </p>
+                <p class="comentario">
+                    1) Si eres empleado (permanente, por prestación de servicios o por obra/labor): Debes haber trabajado los últimos 12 meses, y debes enviar el/los certificado(s) que lo demuestren<br>
+                    2) Si eres independiente: Debes tener una trayectoria de al menos 2 años, y debes enviar Cámara de Comercio ó RUT, extractos bancarios de los últimos 3 meses y dos referencias comerciales (cartas de tus proveedores o clientes indicando tiempo de la relación y monto promedio de los pagos)
+                </p>
+            </div>
+
+            <!-- Aprobado Enriquecido -->
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 3 && scanParams.enriquecido">
+                <img [src]="const.aprobado" alt="aprobado">
+                <p class="mensaje">
+                    Tu Solicitud es viable
+                </p>
+                <p class="comentario">
+                    ¡Felicitaciones! Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado haciendo click en el botón o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592
+                </p>
+            </div>
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 4 && !scanParams.enriquecido">
+                <img [src]="const.aprobado" alt="aprobado">
+                <p class="mensaje">
+                    Tu solicitud ya está en proceso
+                </p>
+                <p class="comentario">
+                    Pronto uno de nuestros asesores te llamara para acompañarte hasta que tengas tu vehículo.
+                </p>
+            </div>
+            <!-- Caso en Curso Enriquecido -->
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 4 && scanParams.enriquecido">
+                <img [src]="const.aprobado" alt="aprobado">
+                <p class="mensaje">
+                    Tu solicitud ya está en proceso
+                </p>
+                <p class="comentario">
+                    Chatea con tu asesor personalizado haciendo click en el botón o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592
+                </p>
+            </div>
+
+            <!-- Negativos -->
+
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == -1">
+                <img [src]="const.negado" class="negado">
+                <p class="mensajeNeg">
+                    ¡Ups ocurrió un error!
+                </p>
+                <p class="comentario">
+                    Tuvimos un problema, por favor intenta más tarde.
+                </p>
+            </div>
+
+            <div class="caso" *ngIf="centralesRiesgo.respuestaId == 1">
+                <img [src]="const.negado" class="negado">
+                <p class="mensajeNeg">
+                    Lo sentimos
+                </p>
+                <p class="comentario">
+                    Tu solicitud no es viable en este momento.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Botones -->
+
+    <div class="contBoton center">
+        <a *ngIf="centralesRiesgo.sendMail" href="mailto:digital@santanderconsumer.co?subject=Soy-preaprobado">
+            <button id="stepThree" mat-button>Enviar email</button>
+        </a>
+
+        <a *ngIf="centralesRiesgo.sendWhatsapp" href="https://cariai.com/santanderdigitalchannel/santanderdigitalchannel">
+            <button id="stepThree" mat-button>Chatea con tu asesor</button>
+        </a>
+
+        <button id="stepThreeNoImportant" mat-button (click)="apiMercadolibre.volverNavegador()">Volver a MercadoLibre</button>
+    </div>
+</div>

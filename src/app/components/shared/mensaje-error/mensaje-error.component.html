@@ -1,0 +1,44 @@
+<div class="contenedor">
+    <div class="contenido" [ngSwitch]="apiMercadolibre.numeroError">
+
+        <div class="mensaje" *ngSwitchCase="1">
+            <div class="msjError">Error 404</div><br>
+            Ups! <strong>Accediste directamente</strong><br><br>
+            <div class="detalles">
+                Un error ha ocurrido.<br>
+                Al parecer accediste directamente, escoge el mejor vehiculo para tí, acá te estaremos esperando
+            </div>
+            <div class="contBoton center">
+                <button mat-button (click)="apiMercadolibre.volverNavegador()">VOLVER A MERCADOLIBRE</button>
+            </div>
+        </div>
+
+        <div class="mensaje" *ngSwitchCase="2">
+            <div class="msjError">Error 404</div><br>
+            No eres tú <strong>somos nosotros</strong><br><br>
+            <div class="detalles">
+                Un error ha ocurrido.<br>
+                Vuelve a tu carro favorito y haz el proceso nuevamente
+            </div>
+            <div class="contBoton center">
+                <button mat-button (click)="apiMercadolibre.volverNavegador()">VOLVER A MERCADOLIBRE</button>
+            </div>
+        </div>
+
+        <div class="mensaje">
+            <div class="msjError">Error 404</div><br>
+            Ups! <strong>Accediste directamente</strong><br><br>
+            <div class="detalles">
+                Un error ha ocurrido.<br>
+                Al parecer accediste directamente, escoge el mejor vehiculo para tí, acá te estaremos esperando
+            </div>
+            <div class="contBoton center">
+                <button mat-button (click)="apiMercadolibre.volverNavegador()">VOLVER A MERCADOLIBRE</button>
+            </div>
+        </div>
+        
+        <div class="imagen">
+            <img [src]="const.errorApi" alt="Error API">
+        </div>
+    </div>
+</div>

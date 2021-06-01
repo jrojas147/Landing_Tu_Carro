@@ -1,0 +1,57 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/mixins";
+
+.contenedor{
+    background-color: $color-blanco;
+    margin-top: 16%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 0 5%;
+    @include Asmall(){
+            padding: 0 5%;
+            margin: 25% 5% 0 5%;
+    }
+    .encabezado{
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        padding: 5% 0;
+    }
+    .contenido{
+        font-size: 12px;
+        .scrollcontenido{
+            grid-column: 2;
+            height: 65vh;
+            overflow: auto;
+            padding: 0 10px;
+            @include Asmall(){
+                height: 80vh;
+                padding: 0;
+            }
+            @include full(){
+                height: 90vh;
+            }
+        }
+        .parrafo{
+            text-align: justify;
+        }        
+    }
+    .cntboton{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 3.8% 0;
+        button{
+            grid-column: 3;
+            text-align: center;
+        }
+    }
+
+}
+
+.mat-button{
+    padding: 0 !important;
+}
+
+.pointer {
+    cursor: pointer;
+    text-decoration: none !important;
+}

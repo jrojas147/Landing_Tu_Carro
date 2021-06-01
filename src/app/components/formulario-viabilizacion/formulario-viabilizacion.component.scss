@@ -1,0 +1,110 @@
+@import "../../../scss/variables";
+@import "../../../scss/mixins";
+
+.contenedor{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    app-modaltyc, mat-horizontal-stepper{
+        grid-row: 1;
+        grid-column: 1;
+    }
+    app-modaltyc{
+        z-index: 1;
+    }
+}
+
+.contCampoDos{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1.5%;
+    @include Asmall(){
+        margin: 0 0 6% 0;
+    }
+}
+
+.contCampoDos#segundo{
+    @include Asmall(){
+        grid-template-columns: auto;
+    }
+}
+
+.contCampoUno{
+    .tituloCampo#cuotas{
+        margin: 0 0 2.8% 0;
+        @include Asmall(){
+            margin: 0 0 10% 0;
+        }
+    }
+}
+
+.contCampoUno#check{
+    font-size: 12px;
+}
+
+.tituloCampo{
+    font-size: 15px;
+    color: $color-grisDos;
+}
+
+.cifra{
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.menuda {
+    font-size: 10px;
+    color: $color-grisDos;
+}
+
+form{
+    padding: 7.5% 10% 0 10%;
+    @include Asmall(){
+        padding: 2% 4%;
+    }
+}
+
+.contCampoUno, .contCampoDos{
+    margin: 0 0 4% 0;
+    @include Asmall(){
+        margin: 3% 0 6% 0;
+    }
+}
+
+.contCampoDos#segundo{
+    margin: 0;
+}
+
+mat-radio-group {
+    display: grid !important;
+    mat-radio-button {
+        border: 1px solid $color-borde-inputs !important;
+        border-radius: 8px !important;
+        padding: 2% !important;
+    }
+}
+
+.mat-radio-checked p {
+    font-weight: 700;
+}
+
+form.segundo{
+    padding: 11% 10% 8% 10%;
+    @include full(){
+        padding: 13% 10% 7.5% 10%;
+    }
+}
+
+.tituloPaso{
+    text-align: center;
+    padding: 6% 0;
+    font-size: 14px;
+}
+
+hr{
+    margin: 0 4% 4% 4%;
+}
+
+input.ctaInicial{
+    font-weight: 700;
+}

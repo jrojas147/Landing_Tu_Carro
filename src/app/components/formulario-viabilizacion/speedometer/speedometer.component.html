@@ -1,0 +1,28 @@
+<div class="contenedor">
+  <div class="contenido">
+    <div [ngClass]="{radioGroup: cssPlazo==='radioGroup', radioGroup2: cssPlazo==='radioGroup2', radioGroup3: cssPlazo==='radioGroup3'}">
+      <div class="radioControl" *ngFor="let cuota of calculadoraServicio.resultadoCalculadora.resultadoCuota"
+        [id]="cuota.nombre">
+        <input type="radio" [value]="cuota.cuota" [formControl]="periodo" name="periodos">
+        <label for="periodos"><strong>{{cuota.cuota}}</strong></label>
+      </div>
+
+    </div>
+    <p class="center"><strong>{{informacionPagar.cuota}}</strong> pagos mensuales de <strong>$ {{
+        informacionPagar.valorCuota | number:'1.0':'es'}}</strong></p>
+
+    <div class="contMedidor">
+      <rg-gauge-chart id="chart"
+        [canvasWidth]="canvasWidth"
+        [needleValue]="needleValue"
+        [centralLabel]="centralLabel"
+        [options]="options">
+      </rg-gauge-chart>
+      <p class="center">Plazo/meses</p>
+    </div>
+
+    <img [src]="const.medidor" alt="">
+
+
+  </div>
+</div>
