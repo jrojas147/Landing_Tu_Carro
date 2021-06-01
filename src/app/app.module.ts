@@ -22,10 +22,11 @@ import { ModaltycComponent } from './components/shared/modaltyc/modaltyc.compone
 import { RespuestaComponent } from './components/formulario-viabilizacion/respuesta/respuesta.component';
 import { MensajeErrorComponent } from './components/shared/mensaje-error/mensaje-error.component';
 import { SpeedometerComponent } from './components/formulario-viabilizacion/speedometer/speedometer.component';
+import { NoFinanciableComponent } from './components/shared/no-financiable/no-financiable.component';
 import { GaugeChartModule } from 'angular-gauge-chart';
 import { UrlSeguraPipe } from './pipes/url-segura.pipe';
 import { RouterModule } from '@angular/router';
-import { NoFinanciableComponent } from './components/shared/no-financiable/no-financiable.component';
+
 
 registerLocaleData(localeEs, 'es');
 
@@ -41,11 +42,11 @@ registerLocaleData(localeEs, 'es');
     CargadorComponent,
     SplashComponent,
     ModaltycComponent,
-    NoFinanciableComponent,
     RespuestaComponent,
     MensajeErrorComponent,
     SpeedometerComponent,
-    UrlSeguraPipe
+    UrlSeguraPipe,
+
   ],
   imports: [
     BrowserModule,
