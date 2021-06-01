@@ -25,7 +25,7 @@ import { SpeedometerComponent } from './components/formulario-viabilizacion/spee
 import { GaugeChartModule } from 'angular-gauge-chart';
 import { UrlSeguraPipe } from './pipes/url-segura.pipe';
 import { RouterModule } from '@angular/router';
-import { NoFinanciableComponent } from './components/shared/No-financiable/no-financiable.component';
+import { NoFinanciableComponent } from './components/shared/no-financiable/no-financiable.component';
 
 registerLocaleData(localeEs, 'es');
 
