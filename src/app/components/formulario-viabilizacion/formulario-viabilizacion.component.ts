@@ -93,7 +93,7 @@ export class FormularioViabilizacionComponent implements OnInit {
     setTimeout(() => {
       if (this.apiMercadolibre.idVehiculo !== undefined || this.apiMercadolibre.idVehiculo !== null) {
         this.obtenerInfoVehiculo();
-        
+
       }
     }, 200);
     breakpointObserver.observe([
@@ -244,7 +244,6 @@ export class FormularioViabilizacionComponent implements OnInit {
   viabilizar() {
 
     this.centralesRiesgo.observableAutenticar.subscribe((value: number) => {
-
       /* Igualando */
       this.contacto.DatosBasicos.ValorVehiculo = this.valorFinanciar;
       this.contacto.DatosVehiculo.Modelo = Number(this.centralesRiesgo.modeloCarro);
