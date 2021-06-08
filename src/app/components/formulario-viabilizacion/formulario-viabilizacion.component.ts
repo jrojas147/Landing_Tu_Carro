@@ -305,14 +305,12 @@ export class FormularioViabilizacionComponent implements OnInit {
         this.centralesRiesgo.variantePreaprobado = 22;
         if (this.scanParams.enriquecido){
         }else{
-          this.centralesRiesgo.sendWhatsapp  = true;
+          this.centralesRiesgo.sendMail  = true;
         }
       }
       if (r == 'preaprobadopreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack') {
         this.centralesRiesgo.variantePreaprobado = 23;
-        if (this.scanParams.enriquecido) {
           this.centralesRiesgo.sendWhatsapp = true;
-        }
       }
       if (r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack') {
         this.centralesRiesgo.variantePreaprobado = 24;
@@ -324,11 +322,8 @@ export class FormularioViabilizacionComponent implements OnInit {
       }
       if (r == 'preaprobadonosevalidocorreoelectroniconicelularporubica') {
         this.centralesRiesgo.variantePreaprobado = 26;
-        if (this.scanParams.enriquecido) {
-          this.centralesRiesgo.sendMail = true;
-        }else{
           this.centralesRiesgo.sendWhatsapp = true;
-        }
+
       }
       if (r == 'preaprobadonosevalidoingresoporincomeestimatorpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
         this.centralesRiesgo.variantePreaprobado = 27;
@@ -340,6 +335,11 @@ export class FormularioViabilizacionComponent implements OnInit {
       }
     } else {
       this.centralesRiesgo.variantePreaprobado = 2;
+      if (this.scanParams.enriquecido){
+      }else{
+        this.centralesRiesgo.sendMail = true;
+
+      }
     }
 
     if ( this.centralesRiesgo.respuestaId == 3) {
