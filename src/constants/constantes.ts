@@ -40,7 +40,7 @@ export const constantes = {
     patternCel: "^3+[0-9]{0,10}$",
     patternMail: "^(([^<>()\[\]\\.,;:\s@]+(\.[^<>()\[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$",
 
-    valorMinIngreso: 1200000,
+    valorMinIngreso: 0  ,
 
     /* Credenciales */
     userpass: "VAB1AEMAYQByAHIAbwA6AHQAdQBDAEAAcgByADAAMgAwADEAOQA=",
