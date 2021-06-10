@@ -8,6 +8,7 @@ import { CentralesRiesgoService } from 'src/app/services/centrales-riesgo.servic
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ScanparamsService } from 'src/app/services/scanparams.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -148,7 +149,7 @@ export class FormularioViabilizacionComponent implements OnInit {
     this.segundo.controls['TipoDocumento'].setValue(1);
   }
 
-  cuotaInicialChange(value) {//Joan
+  cuotaInicialChange(value) {
     this.isNoValidMonto = false;
     this.isNoValidCuotaInicial = false;
     if (value > this.valorFinanciar) {
@@ -268,11 +269,17 @@ export class FormularioViabilizacionComponent implements OnInit {
             this.contacto.DatosFinancieros.ActividadIndependiente = 3;
           }
         }
-
         this.centralesRiesgo.apiModular(this.contacto).subscribe((res: any) => {
           this.centralesRiesgo.respuestaId = res.IdResultado;
           let respuesta = res.Resultado;
-         this.cleanRespuesta(respuesta);
+
+            //test
+
+            //  res.IdResultado = 2;
+            //  respuesta = 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack';
+            //  this.scanParams.enriquecido = true;
+
+          this.cleanRespuesta(respuesta);
           this.centralesRiesgo.cargador = false;
         });
       }
@@ -299,49 +306,69 @@ export class FormularioViabilizacionComponent implements OnInit {
     if (r.length > 12 && this.centralesRiesgo.respuestaId == 2) {
       if (r == 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack') {
         this.centralesRiesgo.variantePreaprobado = 21;
-        this.centralesRiesgo.sendMail = true;
+        if( this.scanParams.enriquecido){
+          this.centralesRiesgo.sendMail = true;
+        }
       }
       if (r == 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso') {
         this.centralesRiesgo.variantePreaprobado = 22;
         if (this.scanParams.enriquecido){
+          this.centralesRiesgo.sendMail = true;
         }else{
           this.centralesRiesgo.sendMail  = true;
         }
       }
       if (r == 'preaprobadopreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack') {
         this.centralesRiesgo.variantePreaprobado = 23;
+        if( this.scanParams.enriquecido){
           this.centralesRiesgo.sendWhatsapp = true;
+        }else{
+          this.centralesRiesgo.sendWhatsapp = true;
+        }
       }
       if (r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack') {
         this.centralesRiesgo.variantePreaprobado = 24;
+        if(this.centralesRiesgo.sendMail){
           this.centralesRiesgo.sendMail = true;
+        }
       }
       if (r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso') {
         this.centralesRiesgo.variantePreaprobado = 25;
+        if (this.scanParams.enriquecido){
         this.centralesRiesgo.sendMail = true;
+        }
       }
       if (r == 'preaprobadonosevalidocorreoelectroniconicelularporubica') {
         this.centralesRiesgo.variantePreaprobado = 26;
+        if(this.scanParams.enriquecido){
           this.centralesRiesgo.sendWhatsapp = true;
-
+        }else {
+          this.centralesRiesgo.sendWhatsapp = true;
+        }
       }
       if (r == 'preaprobadonosevalidoingresoporincomeestimatorpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
         this.centralesRiesgo.variantePreaprobado = 27;
+        if (this.scanParams.enriquecido){
           this.centralesRiesgo.sendMail = true;
+        }
       }
-      if (r =='preaprobadonosevalidoingresoporincomeestimatorreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso '){
+      if (r =='preaprobadonosevalidoingresoporincomeestimatorreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso'){
         this.centralesRiesgo.variantePreaprobado = 28;
+        if (this.scanParams.enriquecido){
           this.centralesRiesgo.sendWhatsapp = true;
+        }else{
+          this.centralesRiesgo.sendWhatsapp = true;
+        }
       }
     } else {
       this.centralesRiesgo.variantePreaprobado = 2;
       if (this.scanParams.enriquecido){
+        this.centralesRiesgo.sendMail = true;
       }else{
         this.centralesRiesgo.sendMail = true;
 
       }
     }
-
     if ( this.centralesRiesgo.respuestaId == 3) {
       this.centralesRiesgo.sendWhatsapp = true;
     }
