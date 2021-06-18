@@ -51,9 +51,9 @@ export const constantes = {
     aprobado: './assets/aprobado.png',
     negado: './assets/negado.png',
     errorApi: './assets/404.png',
-    medidor: './assets/medidor.svg',
-    logoMobile: './assets/logomobileCliente.svg',
-    logoMobileStd: './assets/footerMobileSantander.svg',
+    medidor: './assets/medidor.png',
+    logoMobile: './assets/logomobileCliente.png',
+    logoMobileStd: './assets/footerMobileSantander.png',
     /* TYC */
     tyc: {
      titulo: "TERMINOS Y CONDICIONES PORTAL Mercadolibre - Tu carro",

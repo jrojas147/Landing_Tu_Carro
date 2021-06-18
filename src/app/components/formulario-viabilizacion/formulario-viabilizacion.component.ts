@@ -280,6 +280,7 @@ export class FormularioViabilizacionComponent implements OnInit {
             //  this.scanParams.enriquecido = true;
 
           this.cleanRespuesta(respuesta);
+          debugger;
           this.centralesRiesgo.cargador = false;
         });
       }
@@ -315,7 +316,7 @@ export class FormularioViabilizacionComponent implements OnInit {
         if (this.scanParams.enriquecido){
           this.centralesRiesgo.sendMail = true;
         }else{
-          this.centralesRiesgo.sendMail  = true;
+
         }
       }
       if (r == 'preaprobadopreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack') {
@@ -365,7 +366,6 @@ export class FormularioViabilizacionComponent implements OnInit {
       if (this.scanParams.enriquecido){
         this.centralesRiesgo.sendMail = true;
       }else{
-        this.centralesRiesgo.sendMail = true;
 
       }
     }
