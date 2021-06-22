@@ -284,7 +284,6 @@ export class FormularioViabilizacionComponent implements OnInit {
           this.centralesRiesgo.cargador = false;
         });
       }
-
     });
   }
 
@@ -314,8 +313,6 @@ export class FormularioViabilizacionComponent implements OnInit {
       if (r == 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso') {
         this.centralesRiesgo.variantePreaprobado = 22;
         if (this.scanParams.enriquecido){
-          this.centralesRiesgo.sendMail = true;
-        }else{
 
         }
       }
@@ -364,9 +361,6 @@ export class FormularioViabilizacionComponent implements OnInit {
     } else {
       this.centralesRiesgo.variantePreaprobado = 2;
       if (this.scanParams.enriquecido){
-        this.centralesRiesgo.sendMail = true;
-      }else{
-
       }
     }
     if ( this.centralesRiesgo.respuestaId == 3) {

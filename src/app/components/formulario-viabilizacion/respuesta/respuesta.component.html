@@ -1,7 +1,7 @@
 <div class="contenedor">
     <div class="contenido">
       <div class="respuesta" id="aprobado" [@animationFadeOut]="centralesRiesgo.respuestaId">  <!--Validar estilos y cambiar nombre-->
-        <!-- Error Tecnico -->
+        <!-- -1 Error Tecnico -->
         <div class="caso" *ngIf="centralesRiesgo.respuestaId == -1">
           <img [src]="const.negado" class="negado">
           <p class="mensajeNeg">
@@ -11,7 +11,7 @@
               Tuvimos un problema, por favor intenta más tarde.
           </p>
         </div>
-        <!--Negado-->
+        <!--1 Negado-->
         <div class="caso" *ngIf="centralesRiesgo.respuestaId == 1">
           <img [src]="const.negado" class="negado">
           <p class="mensajeNeg">
@@ -21,7 +21,27 @@
               Tu solicitud no es viable en este momento.
           </p>
         </div>
-        <!--Pre Aprobado Enriquecido-->
+        <!--3 Aprobado Enriquecido-->
+        <div class="caso" *ngIf="centralesRiesgo.respuestaId == 3 && scanParams.enriquecido">
+        <img [src]="const.aprobado" alt="aprobado">
+        <p class="mensaje">
+           Aprobado <br> Tu Solicitud es viable
+        </p>
+        <p class="comentario">
+          ¡Felicitaciones! Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado haciendo click en el botón o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592
+        </p>
+        </div>
+        <!--Preaprobado D Enriquecido-->
+        <div class="caso" *ngIf="centralesRiesgo.respuestaId == 2 && scanParams.enriquecido && (centralesRiesgo.variantePreaprobado == 2 || centralesRiesgo.variantePreaprobado == 22 )">
+          <img [src]="const.negado" class="negado">
+          <p class="mensajeNeg">
+              Lo sentimos
+          </p>
+          <p class="comentario">
+              Tu solicitud no es viable en este momento.
+          </p>
+        </div>
+        <!--Pre Aprobado B Enriquecido-->
         <div class="caso" *ngIf="centralesRiesgo.respuestaId == 2 && scanParams.enriquecido && (centralesRiesgo.variantePreaprobado == 23 || centralesRiesgo.variantePreaprobado == 26 || centralesRiesgo.variantePreaprobado == 28)">
           <img [src]="const.aprobado" alt="aprobado">
           <p class="mensaje">
@@ -32,6 +52,7 @@
             ¡Felicitaciones! Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado haciendo click en el botón o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592
           </p>
         </div>
+        <!--Pre Aprobado C Enriquecido-->
         <div class="caso" *ngIf="centralesRiesgo.respuestaId == 2 && scanParams.enriquecido && (centralesRiesgo.variantePreaprobado == 21 || centralesRiesgo.variantePreaprobado == 24 || centralesRiesgo.variantePreaprobado == 25 || centralesRiesgo.variantePreaprobado == 27 )">
           <img [src]="const.aprobado" alt="aprobado">
           <p class="mensaje">
@@ -43,15 +64,6 @@
             Si eres empleado por prestación de servicios debes haber trabajado los últimos 24 meses y debes enviar el/los contrato(s) o carta laboral y enviar los últimos 3 extractos bancarios.
             Si eres independiente, debes tener una trayectoria de al menos 2 años, y debes enviar Cámara de Comercio o RUT, extractos bancarios de los últimos 3 meses y 2 referencias comerciales. (Carta de tus proveedores o clientes, indicando tiempo de la relación y monto promedio de los pagos).
             Recuerda que puedes consultar toda la documentación requerida para obtener tu crédito vehicular haciendo clic aquí. (URL: https://santanderconsumer.co/requerimientos-credito/
-          </p>
-        </div>
-        <div class="caso" *ngIf="centralesRiesgo.respuestaId == 2 && scanParams.enriquecido && (centralesRiesgo.variantePreaprobado == 2 || centralesRiesgo.variantePreaprobado == 22 )">
-          <img [src]="const.negado" class="negado">
-          <p class="mensajeNeg">
-              Lo sentimos
-          </p>
-          <p class="comentario">
-              Tu solicitud no es viable en este momento.
           </p>
         </div>
         <!--Pre Aprobado No Enriquecido-->
@@ -83,23 +95,13 @@
             Tu solicitud no es viable en este momento.
         </p>
         </div>
-        <!--Aprobado-->
-        <div class="caso" *ngIf="centralesRiesgo.respuestaId == 3 && scanParams.enriquecido">
-          <img [src]="const.aprobado" alt="aprobado">
-          <p class="mensaje">
-            Aprobado <br> Tu Solicitud es viable
-          </p>
-          <p class="comentario">
-            ¡Felicitaciones! Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado haciendo click en el botón o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592
-          </p>
-        </div>
-        <!--Aprobado No Enriquecido-->
+        <!--Aprobado 3 No Enriquecido-->
         <div class="caso" *ngIf="centralesRiesgo.respuestaId == 3 && !scanParams.enriquecido">
           <img [src]="const.aprobado" alt="aprobado">
           <p class="mensaje">Tu Solicitud es viable</p>
           <p class="comentario">
             Podemos financiar el 100% de tu vehículo<br>un asesor se comunicará contigo de inmediato.
-          </p>
+           </p>
         </div>
       </div>
     </div>

@@ -65,7 +65,8 @@ export class CentralesRiesgoService {
 
   apiModular(contacto: any) {
     contacto = JSON.stringify(contacto);
-    return this.http.post(`${constantes.apiModular}`, contacto, this.optionsVi);
+  //  return this.http.post(`${constantes.apiModular}`, contacto, this.optionsVi);
+  return this.http.post(`${this.env.urlV}`, contacto, this.optionsVi);
   }
 
 }
