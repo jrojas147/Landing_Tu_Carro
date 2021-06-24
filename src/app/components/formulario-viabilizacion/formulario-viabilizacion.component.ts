@@ -280,7 +280,6 @@ export class FormularioViabilizacionComponent implements OnInit {
             //  this.scanParams.enriquecido = true;
 
           this.cleanRespuesta(respuesta);
-          debugger;
           this.centralesRiesgo.cargador = false;
         });
       }
