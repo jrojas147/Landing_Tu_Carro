@@ -65,4 +65,5 @@ export const constantes = {
                ]
     },
     redirectMercadolibre: 'https://www.mercadolibre.com.co/vehiculos/',
+    apiModular: 'https://api.premiercredit.co:11444/premierservices_api_ext/api/viabilizacion/getViabilizacionModular'
 };
