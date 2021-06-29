@@ -7,11 +7,14 @@
     @include Asmall(){
         padding: 4%;
     }
+    .lista{
+      text-align: left;
+    }
     .respuesta{
         align-self: center;
         justify-self: center;
         text-align: center;
-        
+
         img{
             padding: 5%;
         }
@@ -28,9 +31,9 @@
         .comentario{
             font-size: 12px;
             padding: 2.6% 0;
-        } 
+        }
     }
-    
+
 }
 
 #negado {

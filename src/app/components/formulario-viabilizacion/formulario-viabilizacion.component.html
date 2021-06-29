@@ -14,7 +14,7 @@
 
         <div class="contCampoUno">
           <div>
-            <p class="tituloCampo">Costo total del vehiculo</p>
+            <p class="tituloCampo">Costo total del vehiculo TEMPO</p>
             <p class="cifra">{{ infoVehiculo.price | number:'1.0':'es'}}</p>
           </div>
         </div>
@@ -22,16 +22,16 @@
         <mat-label>Cuota inicial (Porcentaje {{porcentaje | number:'1.0-1':'es'}}%)</mat-label>
         <mat-form-field appearance="outline" class="full-width">
           <input
-            class="ctaInicial" 
-            type="cel" 
-            matInput 
-            currencyMask 
+            class="ctaInicial"
+            type="cel"
+            matInput
+            currencyMask
             placeholder="Cuota inicial"
             [options]="{ align: 'left', prefix: '$ ', suffix: '', thousands: '.', decimal: ',', precision: 0 }"
             [maxlength]="maxLengthHolderCuotaInicial"
-            formControlName="cuotaInicial" 
+            formControlName="cuotaInicial"
             (ngModelChange)="cuotaInicialChange(primero.get('cuotaInicial').value)"
-            required>    
+            required>
           <!--Joan-->
         </mat-form-field>
         <mat-error *ngIf="isNoValidMonto">El valor ingresado supera el valor del vehiculo</mat-error><!--Joan-->
@@ -55,7 +55,7 @@
         </div>
 
         <div class="contBoton center">
-          <button id="stepOne" mat-button matStepperNext [disabled]="primero.status === 'INVALID' || 
+          <button id="stepOne" mat-button matStepperNext [disabled]="primero.status === 'INVALID' ||
               (isNoValidMonto || isNoValidCuotaInicial)">Financiar mi {{
             infoVehiculo.title | primeraPalabra }}</button>
         </div>

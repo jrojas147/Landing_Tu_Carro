@@ -276,9 +276,8 @@ export class FormularioViabilizacionComponent implements OnInit {
             //test
 
             //  res.IdResultado = 2;
-            //  respuesta = 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack';
-            //  this.scanParams.enriquecido = true;
-
+            //   respuesta = 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack';
+            //   this.scanParams.enriquecido = true;
           this.cleanRespuesta(respuesta);
           this.centralesRiesgo.cargador = false;
         });
