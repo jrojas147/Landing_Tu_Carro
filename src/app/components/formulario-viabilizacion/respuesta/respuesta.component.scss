@@ -8,7 +8,17 @@
         padding: 4%;
     }
     .lista{
+      background-color: #fff;
+      margin: 0 auto;
+      padding: 15px;
+      width: 500px;
       text-align: left;
+      .lista ul{
+        list-style-position: outside;
+        margin: 10px;
+        list-style-type: square;
+        text-align: left;
+      }
     }
     .respuesta{
         align-self: center;
@@ -17,11 +27,12 @@
 
         img{
             padding: 5%;
+//            width: 70%;
         }
         .mensaje{
             color: $color-aprobado;
             font-weight: 700;
-            padding: 10% 0 5% 0;
+            padding: -10% 0 5% 0;
         }
         .mensajeNeg{
             color: $color-alert;
@@ -43,7 +54,8 @@
 }
 #aprobado{
     img{
-        width: 100%;
+        width: 70%;
+        padding: 5%;
         /* padding: 130px 130px 0px 130px; */
         @include Asmall(){
             padding: 40px 20px 0;

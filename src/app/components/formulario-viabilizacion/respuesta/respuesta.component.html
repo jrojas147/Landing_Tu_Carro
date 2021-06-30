@@ -56,20 +56,20 @@
         <div class="caso" *ngIf="centralesRiesgo.respuestaId == 2 && scanParams.enriquecido && (centralesRiesgo.variantePreaprobado == 21 || centralesRiesgo.variantePreaprobado == 24 || centralesRiesgo.variantePreaprobado == 25 || centralesRiesgo.variantePreaprobado == 27 )">
           <img [src]="const.aprobado" alt="aprobado">
           <p class="mensaje">
-              Aprobado<br><br>
+              Aprobado<br>
               ¡Estás muy cerca de tener tu crédito aprobado! Para lograrlo debes enviar un correo a digital@santanderconsumer.co con los siguientes documentos:
           </p>
-          <p class="comentario">  </p>
-
+          <div class="comentario">
             <div class="lista">
-              <ul type="1">
+              <ul>
                 <li>Si eres empleado (a término indefinido, fijo o por obra/labor) Debes haber trabajado los últimos 12 meses, y debes enviar el/los certificado(s) que lo demuestren.</li>
-                <li>Si eres empleado por prestación de servicios debes haber trabajado los últimos 24 meses y debes enviar el/los contrato(s) o carta laboral y enviar los últimos 3 extractos bancarios.</li>
-                <li>Si eres independiente, debes tener una trayectoria de al menos 2 años, y debes enviar Cámara de Comercio o RUT, extractos bancarios de los últimos 3 meses y 2 referencias comerciales. (Carta de tus proveedores o clientes, indicando tiempo de la relación y monto promedio de los pagos).</li>
+                <li>Si eres empleado por prestación de servicios debes haber trabajado los últimos 24 meses y debes enviar el/los contrato(s) o carta laboral y enviar los últimos 3 extractos bancarios.
+                Si eres independiente, debes tener una trayectoria de al menos 2 años, y debes enviar Cámara de Comercio o RUT, extractos bancarios de los últimos 3 meses y 2 referencias comerciales. (Carta de tus proveedores o clientes, indicando tiempo de la relación y monto promedio de los pagos).</li>
               </ul>
-              Recuerda que puedes consultar toda la documentación requerida para obtener tu crédito vehicular haciendo clic aquí. (URL: https://santanderconsumer.co/requerimientos-credito/
+              Recuerda que puedes consultar toda la documentación requerida para obtener tu crédito vehicular haciendo clic aquí. <a href="https://santanderconsumer.co/requerimientos-credito/">https://santanderconsumer.co/requerimientos-credito/</a>
             </div>
           </div>
+        </div>
 
         <!-- <p class="comentario">
           Si eres empleado (a término indefinido, fijo o por obra/labor) Debes haber trabajado los últimos 12 meses, y debes enviar el/los certificado(s) que lo demuestren.
