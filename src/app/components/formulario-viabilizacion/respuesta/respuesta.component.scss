@@ -7,19 +7,19 @@
     @include Asmall(){
         padding: 4%;
     }
-    .lista{
-      background-color: #fff;
-      margin: 0 auto;
-      padding: 15px;
-      width: 500px;
-      text-align: left;
-      .lista ul{
-        list-style-position: outside;
-        margin: 10px;
-        list-style-type: square;
-        text-align: left;
-      }
-    }
+     .lista{
+       background-color: #fff;
+       margin: 0 auto;
+       padding: 15px;
+       width: 500px;
+       text-align: left;
+       .lista ul{
+         list-style-position: outside;
+         margin: 10px;
+         list-style-type: square;
+         text-align: left;
+       }
+     }
     .respuesta{
         align-self: center;
         justify-self: center;

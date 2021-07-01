@@ -40,6 +40,7 @@ export class FormularioViabilizacionComponent implements OnInit {
   isNoValidCuotaInicial: boolean;
   maxLengthHolderCuotaInicial: number;//Nuevo
   isSpeed: boolean;
+  showInfo: boolean;
 
   infoVehiculo: any;
   const = constantes;
@@ -191,6 +192,7 @@ export class FormularioViabilizacionComponent implements OnInit {
     this.apiMercadolibre.getInfoVehiculo(this.apiMercadolibre.idVehiculo)
       .subscribe((infoVehiculo) => {
         this.infoVehiculo = infoVehiculo;
+        this.showInfo = true;
         this.crearFormularios();
         this.valorFinanciar = this.infoVehiculo.price;
         this.modeloVehiculo = this.obtenerModelo();

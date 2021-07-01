@@ -1,7 +1,7 @@
 <div class="contenedor">
   <app-modaltyc *ngIf="apiMercadolibre.mostrarModalTyc" [@animationFadeOut]="apiMercadolibre.mostrarModalTyc">
   </app-modaltyc>
-  <mat-horizontal-stepper [disableRipple]="true" linear *ngIf="infoVehiculo && resultadoCalculadora.resultadoCuota"
+  <mat-horizontal-stepper [disableRipple]="true" linear *ngIf="showInfo"
     #stepper>
 
     <mat-step [stepControl]="primero" [editable]="editable">
