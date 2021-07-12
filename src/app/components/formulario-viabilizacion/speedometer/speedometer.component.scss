@@ -15,6 +15,11 @@
     align-self: center;
     justify-self: center;
   }
+  .textoSeguros{
+    font-size: 10px;
+    color: $color-grisDos;
+    text-align: center;
+  }
   .radioGroup {
     margin-bottom: 0%;
     @include Asmall {
@@ -143,7 +148,7 @@
     @include Asmall() {
       grid-row: 1/5;
       grid-column: 6/6;
-      justify-self: left; 
+      justify-self: left;
     }
   }
 }
