@@ -9,6 +9,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ScanparamsService } from 'src/app/services/scanparams.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { ModalpreAprobadoComponent } from '../shared/modalpre-aprobado/modalpre-aprobado.component';
+import { MatDialog } from '@angular/material';
 
 
 @Component({
@@ -36,11 +38,14 @@ export class FormularioViabilizacionComponent implements OnInit {
   segundo: FormGroup;
   idResultado: number;
   pago: number;
-  isNoValidMonto: boolean;//Nuevo
+  isNoValidMonto: boolean;
   isNoValidCuotaInicial: boolean;
-  maxLengthHolderCuotaInicial: number;//Nuevo
+  maxLengthHolderCuotaInicial: number;
   isSpeed: boolean;
   showInfo: boolean;
+  sendMail: boolean;//
+  sendWhatsapp: boolean;//
+  letraMensaje: string;
 
   infoVehiculo: any;
   const = constantes;
@@ -90,13 +95,13 @@ export class FormularioViabilizacionComponent implements OnInit {
     public calculadoraServicio: ApiCalculadoraService,
     public centralesRiesgo: CentralesRiesgoService,
     public breakpointObserver: BreakpointObserver,
-    public scanParams: ScanparamsService) {
+    public scanParams: ScanparamsService,
+    private dialog: MatDialog,) {
     // this.crearFormularios();
 
     setTimeout(() => {
       if (this.apiMercadolibre.idVehiculo !== undefined || this.apiMercadolibre.idVehiculo !== null) {
         this.obtenerInfoVehiculo();
-
       }
     }, 200);
     breakpointObserver.observe([
@@ -106,7 +111,6 @@ export class FormularioViabilizacionComponent implements OnInit {
         this.desaparecerDetallesMobile = true;
       }
     });
-
   }
 
   ngOnInit() {
@@ -170,11 +174,9 @@ export class FormularioViabilizacionComponent implements OnInit {
   get idNoValido() {
     return this.segundo.get('NumeroDocumento').invalid && this.segundo.get('NumeroDocumento').touched;
   }
-
   get documentoExtranjeria() {
     return this.segundo.controls['TipoDocumento'].value == 1 && this.segundo.controls['NumeroDocumento'].value.length == 6 && this.segundo.get('NumeroDocumento').touched;
   }
-
   get celularNoValido() {
     return this.segundo.get('Celular').invalid && this.segundo.get('Celular').touched;
   }
@@ -204,10 +206,8 @@ export class FormularioViabilizacionComponent implements OnInit {
         this.isSpeed = true;
       });
   }
-
   obtenerModelo() {
     const objeto = this.infoVehiculo.attributes.find((item: any) => item.name === 'Año');
-
     return objeto;
   }
 
@@ -253,7 +253,6 @@ export class FormularioViabilizacionComponent implements OnInit {
       this.contacto.DatosVehiculo.Modelo = Number(this.centralesRiesgo.modeloCarro);
       this.contacto.DatosBasicos.Plazo = Number(this.centralesRiesgo.plazo);
       this.contacto.OtrosDatos.InfoTres = this.centralesRiesgo.urlVehiculo;
-      /*  */
 
       if (value === 1) {
         this.editable = false;
@@ -274,19 +273,42 @@ export class FormularioViabilizacionComponent implements OnInit {
         this.centralesRiesgo.apiModular(this.contacto).subscribe((res: any) => {
           this.centralesRiesgo.respuestaId = res.IdResultado;
           let respuesta = res.Resultado;
-
-            //test
-
-            //  res.IdResultado = 2;
-            //   respuesta = 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack';
-            //   this.scanParams.enriquecido = true;
-          this.cleanRespuesta(respuesta);
+          let letraMensaje = res.ResultadoLetra;
+         // this.cleanRespuesta(respuesta);
           this.centralesRiesgo.cargador = false;
+
+          //Test
+          this.letraMensaje = 'C';
+          this.scanParams.enriquecido = true;
+          this.AccionMensaje('C');
         });
       }
     });
   }
 
+  AccionMensaje(letraMensaje){
+    if (letraMensaje === 'A') {
+      if (this.scanParams.enriquecido == true){
+        this.centralesRiesgo.sendWhatsapp = true;
+      }
+     // this.procesarRespuesta();
+    }
+    if (letraMensaje === 'B') {
+      if (this.scanParams.enriquecido == true ){
+        this.centralesRiesgo.sendWhatsapp = true;
+      }
+     // this.procesarRespuesta();
+    }
+    if (letraMensaje === 'C' ) {
+      if( this.scanParams.enriquecido == true){
+        this.centralesRiesgo.sendMail = true;
+      }
+     // this.procesarRespuesta();
+    }
+  }
+
+
+/*
   cleanRespuesta(respuesta) {
     let r = respuesta.toLowerCase();
     r = r.replace(new RegExp("\\s", 'g'), "");
@@ -326,7 +348,7 @@ export class FormularioViabilizacionComponent implements OnInit {
       }
       if (r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack') {
         this.centralesRiesgo.variantePreaprobado = 24;
-        if(this.centralesRiesgo.sendMail){
+        if(this.scanParams.enriquecido){
           this.centralesRiesgo.sendMail = true;
         }
       }
@@ -368,4 +390,14 @@ export class FormularioViabilizacionComponent implements OnInit {
     }
 
   }
+  procesarModal() {
+    const dialogRef = this.dialog.open(ModalpreAprobadoComponent, {
+      data: this.centralesRiesgo
+    });
+    dialogRef.afterClosed().subscribe(result => {
+     // console.log('Dialog result: ${result}');
+    })
+  }*/
+
+
 }

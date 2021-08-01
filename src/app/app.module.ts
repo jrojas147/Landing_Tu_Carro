@@ -26,6 +26,9 @@ import { NoFinanciableComponent } from './components/shared/no-financiable/no-fi
 import { GaugeChartModule } from 'angular-gauge-chart';
 import { UrlSeguraPipe } from './pipes/url-segura.pipe';
 import { RouterModule } from '@angular/router';
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { ModalpreaprobadoModule } from './components/shared/modalpre-aprobado/modalpre-aprobado.module';
+import { ModalRespuestaComponent } from './components/shared/modal-respuesta/modal-respuesta.component';
 
 
 registerLocaleData(localeEs, 'es');
@@ -46,7 +49,9 @@ registerLocaleData(localeEs, 'es');
     MensajeErrorComponent,
     SpeedometerComponent,
     UrlSeguraPipe,
-    NoFinanciableComponent
+    NoFinanciableComponent,
+    ModalRespuestaComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -57,9 +62,13 @@ registerLocaleData(localeEs, 'es');
     ReactiveFormsModule,
     CurrencyMaskModule,
     GaugeChartModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    ModalpreaprobadoModule,
     RouterModule.forRoot([])
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }],
+ // entryComponents: [ModalpreaprobadoModule],//Adiciinaol
   bootstrap: [AppComponent]
 })
 export class AppModule { }
