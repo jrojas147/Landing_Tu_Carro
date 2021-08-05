@@ -7,6 +7,7 @@ import { CentralesRiesgoService } from 'src/app/services/centrales-riesgo.servic
 import { ScanparamsService } from 'src/app/services/scanparams.service';
 import { MatDialog } from '@angular/material';
 import { ModalpreAprobadoComponent } from '../../shared/modalpre-aprobado/modalpre-aprobado.component';
+import { ModalRespuestaComponent } from '../../shared/modal-respuesta/modal-respuesta.component';
 
 @Component({
   selector: 'app-respuesta',
@@ -29,6 +30,8 @@ export class RespuestaComponent implements OnInit {
   letraR: string;
   const = constantes;
   sentmail: boolean;
+  sentWap: boolean;
+
 
   constructor(
     private dialog: MatDialog,
@@ -41,6 +44,12 @@ export class RespuestaComponent implements OnInit {
 
   ngOnInit() {
     this.ObtenrLetra();
+    this.captarwhps();
+  }
+
+  captarwhps(){
+    this.sentmail = this.formularioViable.sendMail,
+    this.sentWap = this.formularioViable.sendWhatsapp
   }
 
   procesarModal() {
@@ -55,5 +64,18 @@ export class RespuestaComponent implements OnInit {
   ObtenrLetra(){
     const letraR = this.formularioViable.AccionMensaje;
   }
+
+  procesarRespuesta(){
+    const dialogRef = this.dialog.open(ModalRespuestaComponent, {
+      data:  {
+        // sentEmail: this.sendMail,
+        // sendWhatsapp: this.sendWhatsapp
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+     // console.log('Dialog result: ${result}');
+    })
+  }
+
 
 }

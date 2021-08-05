@@ -1,1 +1,31 @@
-<p>modal-respuesta works!</p>
+<section class="section-modal">
+  <div class="contLogo">
+  <!-- <img [src]="const.cliente" alt=""> -->
+  <div class="modalRespuesta">
+    <h2 class="TituloModal">{{MensajeTitulo}}</h2>
+  </div>
+    <div *ngIf="centralesData.sendMail" >
+      <div class="mensaje">
+        {{MensajeEmail}}
+      </div>
+      <br>
+      <div  class="piepaso" id="wsp">
+        <button
+        class="Button"
+        color="primary"
+        mat-button matStepperNext
+        (click)="procesarModal()">
+        Aceptar
+        </button>
+      </div>
+    </div>
+    <div *ngIf="centralesData.sendWhatsapp" >
+      <div class="mensaje">
+        {{MensajeChat}}
+      </div>
+      <br>
+      <div class="piepaso" id="wsp">
+      </div>
+    </div>
+  </div>
+</section>

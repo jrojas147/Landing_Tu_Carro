@@ -15,11 +15,10 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { PrimeraPalabraPipe } from './pipes/primera-palabra.pipe';
-import { MatIconModule } from '@angular/material';
 import { CargadorComponent } from './components/shared/cargador/cargador.component';
 import { SplashComponent } from './components/shared/splash/splash.component';
 import { ModaltycComponent } from './components/shared/modaltyc/modaltyc.component';
-import { RespuestaComponent } from './components/formulario-viabilizacion/respuesta/respuesta.component';
+
 import { MensajeErrorComponent } from './components/shared/mensaje-error/mensaje-error.component';
 import { SpeedometerComponent } from './components/formulario-viabilizacion/speedometer/speedometer.component';
 import { NoFinanciableComponent } from './components/shared/no-financiable/no-financiable.component';
@@ -29,6 +28,8 @@ import { RouterModule } from '@angular/router';
 import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { ModalpreaprobadoModule } from './components/shared/modalpre-aprobado/modalpre-aprobado.module';
 import { ModalRespuestaComponent } from './components/shared/modal-respuesta/modal-respuesta.component';
+import { ModalRespuestaModule } from './components/shared/modal-respuesta/modal-respuesta.module';
+import { RespuestaComponent } from './components/formulario-viabilizacion/respuesta/respuesta.component';
 
 
 registerLocaleData(localeEs, 'es');
@@ -50,7 +51,6 @@ registerLocaleData(localeEs, 'es');
     SpeedometerComponent,
     UrlSeguraPipe,
     NoFinanciableComponent,
-    ModalRespuestaComponent,
 
   ],
   imports: [
@@ -62,13 +62,12 @@ registerLocaleData(localeEs, 'es');
     ReactiveFormsModule,
     CurrencyMaskModule,
     GaugeChartModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
+
     ModalpreaprobadoModule,
+    ModalRespuestaModule,
     RouterModule.forRoot([])
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }],
- // entryComponents: [ModalpreaprobadoModule],//Adiciinaol
   bootstrap: [AppComponent]
 })
 export class AppModule { }

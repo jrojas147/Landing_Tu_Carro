@@ -8,9 +8,9 @@ import { CentralesRiesgoService } from 'src/app/services/centrales-riesgo.servic
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ScanparamsService } from 'src/app/services/scanparams.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { ModalpreAprobadoComponent } from '../shared/modalpre-aprobado/modalpre-aprobado.component';
 import { MatDialog } from '@angular/material';
+import { ModalRespuestaComponent } from '../shared/modal-respuesta/modal-respuesta.component';
 
 
 @Component({
@@ -278,9 +278,9 @@ export class FormularioViabilizacionComponent implements OnInit {
           this.centralesRiesgo.cargador = false;
 
           //Test
-          this.letraMensaje = 'C';
+          this.letraMensaje = 'B';
           this.scanParams.enriquecido = true;
-          this.AccionMensaje('C');
+          this.AccionMensaje(this.letraMensaje);
         });
       }
     });
@@ -297,107 +297,34 @@ export class FormularioViabilizacionComponent implements OnInit {
       if (this.scanParams.enriquecido == true ){
         this.centralesRiesgo.sendWhatsapp = true;
       }
-     // this.procesarRespuesta();
+      this.procesarRespuesta();
     }
     if (letraMensaje === 'C' ) {
       if( this.scanParams.enriquecido == true){
         this.centralesRiesgo.sendMail = true;
       }
-     // this.procesarRespuesta();
+      this.procesarRespuesta();
     }
   }
-
-
-/*
-  cleanRespuesta(respuesta) {
-    let r = respuesta.toLowerCase();
-    r = r.replace(new RegExp("\\s", 'g'), "");
-    r = r.replace(new RegExp("[àáâãäå]", 'g'), "a");
-    r = r.replace(new RegExp("æ", 'g'), "ae");
-    r = r.replace(new RegExp("ç", 'g'), "c");
-    r = r.replace(new RegExp("[èéêë]", 'g'), "e");
-    r = r.replace(new RegExp("[ìíîï]", 'g'), "i");
-    r = r.replace(new RegExp("ñ", 'g'), "n");
-    r = r.replace(new RegExp("[òóôõö]", 'g'), "o");
-    r = r.replace(new RegExp("œ", 'g'), "oe");
-    r = r.replace(new RegExp("[ùúûü]", 'g'), "u");
-    r = r.replace(new RegExp("[ýÿ]", 'g'), "y");
-    r = r.replace(new RegExp("\\W", 'g'), "");
-    this.centralesRiesgo.respuesta = r;
-
-    if (r.length > 12 && this.centralesRiesgo.respuestaId == 2) {
-      if (r == 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack') {
-        this.centralesRiesgo.variantePreaprobado = 21;
-        if( this.scanParams.enriquecido){
-          this.centralesRiesgo.sendMail = true;
-        }
-      }
-      if (r == 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso') {
-        this.centralesRiesgo.variantePreaprobado = 22;
-        if (this.scanParams.enriquecido){
-
-        }
-      }
-      if (r == 'preaprobadopreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack') {
-        this.centralesRiesgo.variantePreaprobado = 23;
-        if( this.scanParams.enriquecido){
-          this.centralesRiesgo.sendWhatsapp = true;
-        }else{
-          this.centralesRiesgo.sendWhatsapp = true;
-        }
-      }
-      if (r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack') {
-        this.centralesRiesgo.variantePreaprobado = 24;
-        if(this.scanParams.enriquecido){
-          this.centralesRiesgo.sendMail = true;
-        }
-      }
-      if (r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso') {
-        this.centralesRiesgo.variantePreaprobado = 25;
-        if (this.scanParams.enriquecido){
-        this.centralesRiesgo.sendMail = true;
-        }
-      }
-      if (r == 'preaprobadonosevalidocorreoelectroniconicelularporubica') {
-        this.centralesRiesgo.variantePreaprobado = 26;
-        if(this.scanParams.enriquecido){
-          this.centralesRiesgo.sendWhatsapp = true;
-        }else {
-          this.centralesRiesgo.sendWhatsapp = true;
-        }
-      }
-      if (r == 'preaprobadonosevalidoingresoporincomeestimatorpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
-        this.centralesRiesgo.variantePreaprobado = 27;
-        if (this.scanParams.enriquecido){
-          this.centralesRiesgo.sendMail = true;
-        }
-      }
-      if (r =='preaprobadonosevalidoingresoporincomeestimatorreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso'){
-        this.centralesRiesgo.variantePreaprobado = 28;
-        if (this.scanParams.enriquecido){
-          this.centralesRiesgo.sendWhatsapp = true;
-        }else{
-          this.centralesRiesgo.sendWhatsapp = true;
-        }
-      }
-    } else {
-      this.centralesRiesgo.variantePreaprobado = 2;
-      if (this.scanParams.enriquecido){
-      }
-    }
-    if ( this.centralesRiesgo.respuestaId == 3) {
-      this.centralesRiesgo.sendWhatsapp = true;
-    }
-
-  }
-  procesarModal() {
-    const dialogRef = this.dialog.open(ModalpreAprobadoComponent, {
-      data: this.centralesRiesgo
+  procesarRespuesta(){
+    const dialogRef = this.dialog.open(ModalRespuestaComponent, {
+      data:  this.centralesRiesgo,
+      width: '40%'
     });
     dialogRef.afterClosed().subscribe(result => {
+      debugger;
+      this.procesarPreAprobado();
      // console.log('Dialog result: ${result}');
     })
-  }*/
+  }
 
-
+  procesarPreAprobado() {
+    const dialogRef = this.dialog.open(ModalpreAprobadoComponent, {
+      data:  this.centralesRiesgo,
+      width: '80%'
+    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //  // console.log('Dialog result: ${result}');
+    // })
+  }
 }
