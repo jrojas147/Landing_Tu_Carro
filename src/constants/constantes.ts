@@ -45,11 +45,11 @@ export const constantes = {
     ],
 
     EstadoCivil: [
-      {value: 'Soltero', name: 'Solter@'},
-      {value: 'Casado', name: 'Casad@'},
+      {value: 'Soltero', name: 'Soltero(a)'},
+      {value: 'Casado', name: 'Casado(a)'},
+      {value: 'Viudo', name: 'Viudo(a)'},
+      {value: 'Divorciado', name: 'Divorciado(a)'},
       {value: 'Union Libre', name: 'Union Libre'},
-      {value: 'Divorciado', name: 'Divorciado'},
-      {value: 'Viudo', name: 'Viudo'}
     ],
 
     TipoContrato: [

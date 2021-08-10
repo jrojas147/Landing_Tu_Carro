@@ -30,6 +30,8 @@ import { ModalpreaprobadoModule } from './components/shared/modalpre-aprobado/mo
 import { ModalRespuestaComponent } from './components/shared/modal-respuesta/modal-respuesta.component';
 import { ModalRespuestaModule } from './components/shared/modal-respuesta/modal-respuesta.module';
 import { RespuestaComponent } from './components/formulario-viabilizacion/respuesta/respuesta.component';
+import { ModalComponent } from './components/shared/modal/modal.component';
+import { ModalModule } from './components/shared/modal/modal.module';
 
 
 registerLocaleData(localeEs, 'es');
@@ -51,6 +53,7 @@ registerLocaleData(localeEs, 'es');
     SpeedometerComponent,
     UrlSeguraPipe,
     NoFinanciableComponent,
+   // ModalComponent,
 
   ],
   imports: [
@@ -62,6 +65,7 @@ registerLocaleData(localeEs, 'es');
     ReactiveFormsModule,
     CurrencyMaskModule,
     GaugeChartModule,
+    ModalModule,
 
     ModalpreaprobadoModule,
     ModalRespuestaModule,

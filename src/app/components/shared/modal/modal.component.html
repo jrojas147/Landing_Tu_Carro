@@ -1,0 +1,301 @@
+<section class="section-modal">
+  <div *ngIf="dataModRespuesta.tipoModal === 'Generico'" class="modal-Generico">
+    <div class="encabezado">
+      <div class="Imagenes">
+        <!-- <div class="santander"><img class="LogoSantander" [src]="const.logoBancoRojo" alt=""></div>
+        <div class="meli"><img class="LogoMeli" [src]="const.logoMobile" alt=""></div> -->
+        <img class="LogoSantander" [src]="const.logoBancoRojo" alt="">
+        <img class="LogoMeli" [src]="const.logoMobile" alt="">
+      </div>
+      <div class="titulo">{{dataModRespuesta.Titulo}}</div><br>
+    </div>
+    <div class="body">{{dataModRespuesta.Mensaje}}</div><br>
+    <div class="contBotonPaso">
+      <div class="BtonAccion" *ngIf="dataModRespuesta.sendWhatsapp" >
+        <button mat-button color="primary" (click)="ConectarWhatsapp()">Chatear Asesor</button>
+      </div>
+      <div class="BtonAccion" *ngIf="dataModRespuesta.sentEmail" >
+        <button mat-button color="primary" (click)="procesarFormulario()">Diligenciar Formulario</button>
+      </div>
+      <div class="BtnSalir">
+        <button mat-button color="primary" id="finalizar" (click)="cerrar()" class="piepaso">Salir</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="dataModRespuesta.tipoModal === 'FormularioPreAprobado'" class="modal-preaprobado">
+    <div class="contLogo">
+      <img [src]="const.logoBancoRojo" alt="">
+      <div class="Titulo">"Falta poco" Ingresa tus datos para finalizar</div><br>
+    </div>
+    <form [formGroup]="formulario_Empleado">
+      <br>
+      <div id="contenedorDividido" class="DatosNacimiento">
+        <div class="form-group"><!--Fecha Nacimiento-->
+          <mat-form-field>
+            <input matInput
+            [matDatepicker]="FechaNacimento"
+            [max]="maxDate"  [min]="MinDate"
+            placeholder="Fecha Nacimiento:"
+            formControlName="Fecha_Nacimiento">
+            <mat-datepicker-toggle matSuffix [for]="FechaNacimento"></mat-datepicker-toggle>
+            <mat-datepicker #FechaNacimento></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-group"><!--Lugar Nacimiento-->
+          <mat-form-field class="Direccion">
+            <input
+            matInput
+            (keypress)="patternCoincide($event, const.patternLetter)"
+            type = "text"
+            placeholder="Lugar Nacimiento"
+            formControlName="Lugar_Nacimiento">
+          </mat-form-field>
+        </div>
+      </div>
+      <div id ="contenedorDividido" class="DatosDocumento">
+        <div class="form-group"><!--Fecha Expedicion Cedula-->
+          <mat-form-field>
+            <input matInput
+            [matDatepicker]="FechaExpedicionDocumento"
+            [max]="maxDate"
+            [min]="MinDate"
+            placeholder="Fecha Expedición Documento:"
+            formControlName="Fecha_Expedicion_Documento">
+            <mat-datepicker-toggle matSuffix [for]="FechaExpedicionDocumento"></mat-datepicker-toggle>
+            <mat-datepicker #FechaExpedicionDocumento></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-group"><!--Lugar Expedicion DOcumento-->
+          <mat-form-field>
+            <input
+            matInput
+            (keypress)="patternCoincide($event, const.patternLetter)"
+            type = "text"
+            placeholder="Lugar Expedicion Documento"
+            formControlName="Lugar_Expedicion_Documento">
+          </mat-form-field>
+        </div>
+      </div>
+      <div id ="contenedorDividido" class="DatosPersonales">
+        <div class="form-group"><!--Estado Civil-->
+          <mat-form-field>
+            <mat-select
+            class="Sel-Estado-Civil"
+            placeholder="Estado Civil"
+            formControlName="Estado_Civil">
+              <mat-option *ngFor="let DataEstrato of const.EstadoCivil" [value]="DataEstrato.value">
+                {{DataEstrato.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-group"><!--Numero Personas a cargo-->
+          <mat-form-field >
+            <input
+            class="Sel-Personas-Cargo"
+            type="number"
+            min="0"
+            matInput placeholder="N° Personas a cargo"
+            formControlName="Numero_Personas_Cargo">
+        </mat-form-field>
+        </div>
+        <div class="form-group"><!--Estrato-->
+          <mat-form-field>
+            <mat-select
+            placeholder="Ingresa tu estrato"
+            formControlName="Estrato">
+              <mat-option *ngFor="let DataEstrato of const.Estratos" [value]="DataEstrato.value">
+                {{DataEstrato.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div id ="contenedorDividido" class="DatosDomicilio">
+     <div class="form-group"><!--Direccion-->
+        <mat-form-field class="Direccion">
+          <input matInput placeholder="Dirección" formControlName="Direccion">
+        </mat-form-field>
+      </div>
+      <div class="form-group"><!--Barrio-->
+        <mat-form-field class="Barrio">
+          <input matInput placeholder="Barrio" formControlName="Barrio">
+        </mat-form-field>
+      </div>
+      </div>
+      <div id ="contenedorDividido" class="DatosCiudad">
+        <div class="form-group"><!--Ciudad-->
+          <mat-form-field class="Ciudad">
+            <input
+            matInput
+            (keypress)="patternCoincide($event, const.patternLetter)"
+            type = "text"
+            placeholder="Ciudad"
+            formControlName="Ciudad">
+          </mat-form-field>
+        </div>
+        <div class="form-group"><!--Tipo Vivienda-->
+          <mat-form-field>
+            <mat-select placeholder="Tipo Vivienda" formControlName="Tipo_Vivienda">
+              <mat-option *ngFor="let DataEstrato of const.TipoVivienda" [value]="DataEstrato.value">
+                {{DataEstrato.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div *ngIf="!Independiente" >
+        <div id ="contenedorDividido" class="DatosLaboralesEmpleado">
+          <div class="form-group"><!--Tiempo Laborado Empresa-->
+            <mat-form-field>
+              <input
+              matInput
+              placeholder="Tiempo Laborado:"
+              formControlName="Tiempo_Laborado_Empresa">
+            </mat-form-field>
+          </div>
+          <div class="form-group"><!--Cargo-->
+            <mat-form-field class="Cargo">
+              <input
+              matInput
+              placeholder="Cargo"
+              formControlName="Cargo">
+            </mat-form-field>
+          </div>
+          <div class="form-group"><!--Tipo De Contrato-->
+            <mat-form-field>
+              <mat-select
+              placeholder="Tipo contrato"
+              formControlName="Tipo_Contrato">
+                <mat-option *ngFor="let DataEstrato of const.TipoContrato" [value]="DataEstrato.value">
+                  {{DataEstrato.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="Independiente">
+        <div id ="contenedorDividido" class="DatosLaboralesIndependiente">
+          <div class="form-group"><!--Tiempo Actividad Independiente-->
+            <mat-form-field>
+                <input
+                matInput
+                placeholder="Tiempo Laborado:"
+                formControlName="Tiempo_Actividad_Independinente">
+            </mat-form-field>
+          </div>
+          <div class="form-group"><!--Tipo De Actividad Comercial-->
+            <mat-form-field>
+              <mat-select
+              placeholder="Tipo actividad"
+              formControlName="Tipo_Actividad_Independiente">
+                <mat-option *ngFor="let DataEstrato of const.TipoActividadComercial" [value]="DataEstrato.value">
+                  {{DataEstrato.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div id="contenedorDividido" class="InformacionFinanciara">
+        <div class="form-group"><!--Activos-->
+          <mat-form-field>
+            <input
+            currencyMask
+            matInput
+            [options]="{ align: 'left', prefix: '$ ', suffix: '', thousands: '.', decimal: ',', precision: 0 }"
+            (keypress)="patternCoincide($event, const.patternNumber)"
+            placeholder="Ingresa tus activos"
+            formControlName="Activos">
+          </mat-form-field>
+        </div>
+        <div class="form-group"><!--Pasivos-->
+          <mat-form-field>
+            <input
+            matInput
+            currencyMask
+            [options]="{ align: 'left', prefix: '$ ', suffix: '', thousands: '.', decimal: ',', precision: 0 }"
+            (keypress)="patternCoincide($event, const.patternNumber)"
+            placeholder="Ingresa tus pasivos"
+            formControlName="Pasivos">
+          </mat-form-field>
+        </div>
+        <div class="form-group"><!--Egresos-->
+          <mat-form-field>
+            <input
+            matInput
+            currencyMask
+            [options]="{ align: 'left', prefix: '$ ', suffix: '', thousands: '.', decimal: ',', precision: 0 }"
+            (keypress)="patternCoincide($event, const.patternNumber)"
+            placeholder="Ingresa tus Egresos"
+            formControlName="Egresos">
+          </mat-form-field>
+        </div>
+      </div>
+      <div id="contenedorDividido" class="InformacionReferenciaPersonal">
+        <div class="form-group"><!--Nombre Referencia-->
+          <mat-form-field>
+            <input
+            matInput
+            (keypress)="patternCoincide($event, const.patternLetter)"
+            type = "text"
+            placeholder="Nombre referencia Personal"
+            formControlName="Nombre_Referencia_1_P">
+          </mat-form-field>
+        </div>
+        <div class="form-group"><!--Celular Referencia-->
+          <mat-form-field>
+            <input
+            matInput
+            type="tel"
+            maxlength="10"
+            (keypress)="patternCoincide($event, const.patternNumber)"
+            placeholder="Telefono Referecnia Personal"
+            formControlName="Contacto_Referencia_1_P">
+          </mat-form-field>
+        </div>
+      </div>
+      <div id="contenedorDividido" class="InformacionReferenciaFamiliar">
+        <div class="form-group"><!--Nombre Referencia Familiar-->
+          <mat-form-field>
+            <input
+            matInput
+            (keypress)="patternCoincide($event, const.patternLetter)"
+            type = "text"
+            placeholder="Nombre Referencia Familiar"
+            formControlName="Nombre_Referencia_1_F">
+          </mat-form-field>
+        </div>
+        <div class="form-group"><!--Celular Referencia-->
+          <mat-form-field>
+            <input
+            matInput
+            type="tel"
+            maxlength="10"
+            (keypress)="patternCoincide($event, const.patternNumber)"
+            placeholder="Telefono Referencia Familiar"
+            formControlName="Contacto_Referencia_1_F">
+          </mat-form-field>
+        </div>
+      </div>
+      <hr>
+      <hr>
+        <div class="contBotonPaso">
+          <div class="BtonAccion">
+            <button mat-button (click)="onsubmit()"
+              color="primary" type="button" [disabled]="formulario_Empleado.status === 'INVALID'" class="btnPrimario">
+              Enviar
+            </button>
+          </div>
+          <div class="BtnSalir">
+            <button mat-button color="primary" id="finalizar" (click)="cerrar()" class="piepaso">Salir</button>
+          </div>
+        </div>
+
+    </form>
+
+
+  </div>
+</section>

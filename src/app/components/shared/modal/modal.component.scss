@@ -1,0 +1,200 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/mixins';
+
+
+.section-modal {
+  width: 100%;
+  font-family: Roboto;
+  text-align: center;
+  grid-template-rows: auto;
+  font-size: 14px;
+
+  .Imagenes{
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    @include Asmall() {
+      text-align: center;
+    }
+    .LogoSantander{
+      width: 40%;
+      justify-self: center;
+    }
+    .LogoMeli{
+      align-self: center;
+      justify-self: center;
+    }
+  }
+
+  .titulo{
+    font-family: Roboto;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: all 0.5s;
+    justify-self: center;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .DatosDocumento{
+    @include tabletLaptop(){
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: 1fr;
+        grid-column-gap: 5px;
+    }
+  }
+  .DatosPersonales{
+    .Sel-Estado-Civil{
+      width: 94%;
+    }
+    .Sel-Personas-Cargo{
+      width: 94%;
+    }
+    @include tabletLaptop(){
+      display: grid;
+      grid-template-columns: repeat(3 , auto);
+      //grid-template-rows: 1fr;
+      grid-template-rows: 15fr;
+      //grid-column-gap: 5px;
+      grid-column-gap: 0x;
+      }
+  }
+  .DatosNacimiento{
+    @include tabletLaptop(){
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: 1fr;
+        grid-column-gap: 5px;
+    }
+  }
+  .DatosDomicilio{
+    @include tabletLaptop(){
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      grid-template-rows: 1fr;
+      grid-column-gap: 5px;
+    }
+  }
+  .DatosCiudad{
+    @include tabletLaptop(){
+      display: grid;
+      grid-template-columns: repeat(2 , auto);
+      grid-template-rows: 1fr;
+      grid-column-gap: 5px;
+      }
+  }
+  .DatosLaboralesEmpleado{
+    @include tabletLaptop(){
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      grid-template-rows: 1fr;
+      grid-column-gap: 5px;
+    }
+  }
+  .DatosLaboralesIndependiente{//
+    @include tabletLaptop(){
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      grid-template-rows: 1fr;
+      grid-column-gap: 15px;
+    }
+  }
+  .InformacionFinanciara{//
+    @include tabletLaptop(){
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      grid-template-rows: 1fr;
+      grid-column-gap: 15px;
+    }
+  }
+  .InformacionReferenciaPersonal{
+    @include tabletLaptop(){
+      display: grid;
+      grid-template-columns: repeat(2 , auto);
+      grid-template-rows: 1fr;
+      grid-column-gap: 5px;
+      }
+  }
+  .InformacionReferenciaFamiliar{
+    @include tabletLaptop(){
+      display: grid;
+      grid-template-columns: repeat(2 , auto);
+      grid-template-rows: 1fr;
+      grid-column-gap: 5px;
+      }
+  }
+
+  .contBotonPaso{
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    // grid-template-columns: 90%;
+    width: 50%;
+    padding: 1px 16px !important;
+    line-height: 36px;
+    text-align: center !important;
+    @include smallTablet{
+      display: block;
+    }
+    @include Asmall{
+      display: block;
+    }
+
+    @include Asmall() {
+      width: 80%;
+      height: 11vh;
+      font-size: 12px;
+    }
+    @include tabletLaptop(){
+        grid-template-columns: 37% 37% 37%;
+    }
+    .BtonAccion{
+      font-size: 11px !important;
+      width: 50% !important;
+      position: relative;
+      top: 20px;
+      left: 15px;
+      @include Asmall{
+        top: 10px;
+        left: 20px;
+      }
+    }
+    .BtnSalir{
+      font-size: 11px !important;
+      width: 100% !important;
+      position: relative;
+      padding: 10px;
+      top: 11px;
+      left: 202px;
+      @include Asmall{
+        position: relative;
+        top: 20px;
+        left: 20px;
+      }
+    }
+    .acctions-button {
+      padding-top: -10%;
+      button {
+        background-color: rgba(236, 0, 0, 1);
+        border-radius: 50px;
+        color: rgba(255, 255, 255, 1);
+        margin: 0 10px;
+        padding: 0 66px;
+        @include Asmall() {
+          width: 80%;
+          height: 11vh;
+          font-size: 14px;
+        }
+        &:disabled {
+          background-color: rgb(255, 96, 96);
+        }
+      }
+    }
+  }
+
+  .form-group{
+    font-size: small;
+  }
+
+}

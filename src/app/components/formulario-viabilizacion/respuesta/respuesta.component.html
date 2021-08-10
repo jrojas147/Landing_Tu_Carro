@@ -2,8 +2,7 @@
     <div class="contenido">
       <div class="respuesta" id="aprobado" [@animationFadeOut]="centralesRiesgo.respuestaId">  <!--Validar estilos y cambiar nombre-->
 
-        {{centralesRiesgo.sendMail}}
-        {{centralesRiesgo.sendWhatsapp}}
+
 
         <div class="caso" *ngIf="formularioViable.letraMensaje === 'A'">
           <img [src]="const.negado" class="negado">
@@ -50,7 +49,7 @@
               Tu solicitud no es viable en este momento.
           </p>
         </div>
-        <div class="caso" *ngIf="formularioViable.letraMensaje== 'E'">
+        <div class="caso" *ngIf="formularioViable.letraMensaje == 'E'">
           <img [src]="const.negado" class="negado">
           <p class="mensajeNeg">
               ¡Ups ocurrió un error!
@@ -64,13 +63,9 @@
     <!-- Botones -->
     <button (click)="procesarRespuesta()"></button>
     <div class="contBoton center">
-      <a *ngIf="centralesRiesgo.sendMail" >
-            <button id="stepThree" mat-button (click)="procesarModal()">Procesar Datos</button>
-      </a>
-
-        <!-- <a *ngIf="centralesRiesgo.sendMail" href="mailto:digital@santanderconsumer.co?subject=Soy-preaprobado">
+         <a *ngIf="centralesRiesgo.sendMail" href="mailto:digital@santanderconsumer.co?subject=Soy-preaprobado">
             <button id="stepThree" mat-button (click)="procesarModal()">Enviar email</button>
-        </a> -->
+        </a>
         <a *ngIf="centralesRiesgo.sendWhatsapp" href="https://cariai.com/santanderdigitalchannel/santanderdigitalchannel">
             <button id="stepThree" mat-button>Chatea con tu asesor</button>
         </a>

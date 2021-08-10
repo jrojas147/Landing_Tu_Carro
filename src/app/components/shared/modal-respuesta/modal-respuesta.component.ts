@@ -40,7 +40,6 @@ export class ModalRespuestaComponent implements OnInit {
     this.directWhatsapp();
   }
   procesarModal() {
-    debugger;
     this.cerrar();
     // const dialogRef = this.dialog.open(ModalpreAprobadoComponent, {
     //   data: this.formViabilizacion.contacto//Validar que carga

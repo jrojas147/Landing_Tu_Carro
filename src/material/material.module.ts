@@ -20,7 +20,8 @@ const MaterialComponents = [
     MatSnackBarModule,
     MatIconModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatIconModule
 
 ];
 

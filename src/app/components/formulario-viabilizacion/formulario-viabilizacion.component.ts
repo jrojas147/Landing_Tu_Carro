@@ -11,6 +11,7 @@ import { ScanparamsService } from 'src/app/services/scanparams.service';
 import { ModalpreAprobadoComponent } from '../shared/modalpre-aprobado/modalpre-aprobado.component';
 import { MatDialog } from '@angular/material';
 import { ModalRespuestaComponent } from '../shared/modal-respuesta/modal-respuesta.component';
+import { ModalComponent } from '../shared/modal/modal.component';
 
 
 @Component({
@@ -46,6 +47,10 @@ export class FormularioViabilizacionComponent implements OnInit {
   sendMail: boolean;//
   sendWhatsapp: boolean;//
   letraMensaje: string;
+  VarianteAprobado: string;
+  TituloModRespuesta: string;
+  MensajeModRespuesta: string;
+  ejecutarFormularioPreaprobado: boolean = false;
 
   infoVehiculo: any;
   const = constantes;
@@ -115,7 +120,7 @@ export class FormularioViabilizacionComponent implements OnInit {
 
   ngOnInit() {
     this.viabilizar();
-  }
+     }
 
   crearFormularios() {
     this.primero = this.formBuilder.group({
@@ -278,8 +283,8 @@ export class FormularioViabilizacionComponent implements OnInit {
           this.centralesRiesgo.cargador = false;
 
           //Test
-          this.letraMensaje = 'B';
-          this.scanParams.enriquecido = true;
+          // this.letraMensaje = 'B';
+          // this.scanParams.enriquecido = true;
           this.AccionMensaje(this.letraMensaje);
         });
       }
@@ -287,44 +292,85 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   AccionMensaje(letraMensaje){
+    let validacion = this.contacto
     if (letraMensaje === 'A') {
       if (this.scanParams.enriquecido == true){
-        this.centralesRiesgo.sendWhatsapp = true;
+        this.sendWhatsapp = true;
+        this.VarianteAprobado = 'sendWhatsapp';
+        this.validarTituloModalRespuesta();
+        this.procesarModalRespuesta();
       }
-     // this.procesarRespuesta();
     }
     if (letraMensaje === 'B') {
       if (this.scanParams.enriquecido == true ){
-        this.centralesRiesgo.sendWhatsapp = true;
+        this.sendWhatsapp = true;
+        this.VarianteAprobado = 'sendWhatsapp';
+        this.validarTituloModalRespuesta();
+        this.procesarModalRespuesta();
       }
-      this.procesarRespuesta();
     }
     if (letraMensaje === 'C' ) {
       if( this.scanParams.enriquecido == true){
-        this.centralesRiesgo.sendMail = true;
+        this.sendMail = true;
+         this.VarianteAprobado = 'sendMail';
+         this.validarTituloModalRespuesta();
+         this.procesarModalRespuesta();
+
       }
-      this.procesarRespuesta();
     }
   }
-  procesarRespuesta(){
-    const dialogRef = this.dialog.open(ModalRespuestaComponent, {
-      data:  this.centralesRiesgo,
-      width: '40%'
+
+  validarTituloModalRespuesta():void{
+    if ( this.VarianteAprobado =='sendMail' ){
+      this.TituloModRespuesta = 'Credito Prea-probado ';
+      this.MensajeModRespuesta = 'Estas a punto de cumplir tus sueños, Para finalizar solo tienes que diligenciar el siguiente formato. Te estaremos contactando pronto';
+    }
+    if ( this.VarianteAprobado =='sendWhatsapp' ){
+      this.TituloModRespuesta = 'Credito Prea-probado, estas a punto de cumplir tus sueños';
+      this.MensajeModRespuesta = 'Te estamos contactando con nuestro asesor mediante whatsapp';
+    }
+  }
+
+  procesarModalRespuesta(): void{
+    const dialogRef =this.dialog.open(ModalComponent, {
+      data: {
+      datacentrales: this.contacto,
+      Titulo: this.TituloModRespuesta,
+      Mensaje: this.MensajeModRespuesta,
+      sentEmail: this.sendMail,
+      sendWhatsapp: this.sendWhatsapp,
+      tipoModal: 'Generico',
+      ejecutarFormularioPreaprobado: this.ejecutarFormularioPreaprobado
+      },
+      disableClose : true,
+      height: '250px',
+      width: '490px',
     });
-    dialogRef.afterClosed().subscribe(result => {
-      debugger;
-      this.procesarPreAprobado();
-     // console.log('Dialog result: ${result}');
+    dialogRef.afterClosed().subscribe(result  =>{
+      console.log(`Ejecutar formulario preaprobado ${result}`)
+      if(result === true){
+        this.procesarModalPreaprobado();
+      }
     })
   }
 
-  procesarPreAprobado() {
-    const dialogRef = this.dialog.open(ModalpreAprobadoComponent, {
-      data:  this.centralesRiesgo,
-      width: '80%'
+  procesarModalPreaprobado(){
+    const dialogRef =this.dialog.open(ModalComponent, {
+      data: {
+        datacentrales: this.contacto,
+        Titulo: 'Formulario Pre-Aprobado',
+        Mensaje: "Falta poco, Ingresa tus datos para finalizar",
+        tipoModal: 'FormularioPreAprobado',
+      },
+      disableClose : true,
+      height: '700px',
+      width: '680px',
+
     });
-    // dialogRef.afterClosed().subscribe(result => {
-    //  // console.log('Dialog result: ${result}');
-    // })
+    dialogRef.disableClose = true,
+    dialogRef.afterClosed().subscribe(result  =>{
+      console.log(result);
+    })
   }
+
 }

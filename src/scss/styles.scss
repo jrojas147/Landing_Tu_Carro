@@ -52,7 +52,7 @@
   display: grid !important;
   grid-template-columns: repeat(3, auto) !important;
   grid-template-rows: 1fr !important;
-  padding: 20px 80px 0 80px; 
+  padding: 20px 80px 0 80px;
   @include Asmall(){
     padding: 0px 5%;
     margin: 0 auto;
@@ -160,13 +160,13 @@
   text-decoration: underline;
 }
 .mat-horizontal-content-container{
-  border-top-right-radius: $radio-borde !important; 
+  border-top-right-radius: $radio-borde !important;
   border-bottom-right-radius: $radio-borde !important;
   box-shadow: 3px 1px 5px 0px #e0e0e0;
   @include Asmall(){
     border-radius: 10px !important;
     margin: 4% !important;
-  } 
+  }
 }
 
 /* Radio Button Checked */
@@ -194,7 +194,7 @@
   background-color: $color-secundario !important;
   color: $color-blanco !important;
   border-radius: 20px !important;
-  padding: 1% 100px !important;
+  padding: 1% 100px ;
   @include Asmall(){
     padding: 1% 15% !important;
   }
@@ -234,7 +234,7 @@ span.mat-button-wrapper{
   .mat-radio-container, .mat-radio-label-content{
     align-self: center !important;
     justify-self: center !important;
-  }    
+  }
 }
 
 .mat-step-label{
@@ -276,7 +276,7 @@ span.mat-button-wrapper{
   @include tabletLaptop(){
     display: none;
   }
-  
+
   @include laptopDesktop(){
     display: none;
   }
