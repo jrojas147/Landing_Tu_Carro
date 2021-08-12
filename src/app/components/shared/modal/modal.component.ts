@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { constantes } from 'src/constants/constantes';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { HttpClient } from '@angular/common/http';
 import { animate, state, style, transition, trigger } from '@angular/animations';
@@ -8,6 +8,7 @@ import { DatosPreAprobado } from 'src/app/interfaces/datosPreAprobado';
 import { FormBuilder, FormControl, FormGroup, FormsModule, Validators } from '@angular/forms'
 import * as moment from 'moment';
 import { FormularioPreAprobadoServiceService } from 'src/app/services/formulario-pre-aprobado.service.service';
+import { ModalinfoComponent } from '../modal-Info/modalinfo.component';
 
 
 
@@ -33,12 +34,19 @@ export class ModalComponent implements OnInit {
   stepFinish: boolean;//
   maxDate = new Date();
   MinDate = moment().subtract(80, 'year');
-  dialog: any;
+  // dialog: any;
   ejecutarFormularioPreaprobado: boolean;
   confirmSalir: boolean = false;
+  //Modal Info
+  ModalConfirmSalir: boolean = false;
+  ModalAvisoDocumentos: boolean = false;
+  tituloModalInfo: string = '';
+  mensajeModalInfo: string = '';
+  mensajeModalInfo2: string = '';
 
 
   constructor(
+    private dialog: MatDialog,
     private dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public dataModRespuesta: {
       Titulo: string,
@@ -159,12 +167,79 @@ export class ModalComponent implements OnInit {
     this.confirmSalir = true;
     this.dataModRespuesta.tipoModal = ''
   }
-
-
-
-
    cerrar(): void {
      this.dialogRef.close();
    }
+
+   ProcesarSalir(){
+     debugger;
+    this.ModalAvisoDocumentos = false;
+   this.ModalConfirmSalir = true;
+   this.mensajeModalInformativo();
+   this.ejecutarModalAvisoSalir();
+ }
+
+ ProcesarAvisoDocumentos(){
+   this.ModalConfirmSalir = false,
+   this.ModalAvisoDocumentos = true
+   this.mensajeModalInformativo();
+   this.ejecutarModalAvisoDocumentos();
+
+ }
+
+ mensajeModalInformativo(){
+  if(this.ModalConfirmSalir){
+    this.tituloModalInfo = 'Deseas salir sin finalizar'
+    this.mensajeModalInfo = 'Estas seguro que deseas salir sin finalizar tu solicitud'
+  }
+  if(this.ModalAvisoDocumentos){
+   this.tituloModalInfo = 'Recuerda adjuntar los siguientes documentos:'
+   this.mensajeModalInfo = 'Si eres empleado a término indefinido, fijo o por obra/labor antiguedad mayor a 12 meses, debes enviar el/los certificado(s) que lo demuestren.'
+   this.mensajeModalInfo2 = 'Si eres empleado por prestación de servicios debes haber trabajado los últimos 24 meses y debes enviar el/los contrato(s) o carta laboral y enviar los últimos 3 extractos bancarios.'
+  }
+}
+
+ejecutarModalAvisoSalir(){
+  const dialogRef =this.dialog.open(ModalinfoComponent, {
+    data: {
+      titulo : this.tituloModalInfo,
+      mensaje : this.mensajeModalInfo,
+      mensaje2: this.mensajeModalInfo2,
+      tipoModalSalir : this.ModalConfirmSalir,
+      tipoModalDocumentos : this.ModalAvisoDocumentos
+    },
+    disableClose : true,
+     height: '190px',
+     width: '380px',
+  });
+  dialogRef.afterClosed().subscribe(result  =>{
+    if (result && this.ModalConfirmSalir){
+      this.cerrar();
+    }
+  })
+}
+
+ejecutarModalAvisoDocumentos(){
+  const dialogRef =this.dialog.open(ModalinfoComponent, {
+    data: {
+      titulo : this.tituloModalInfo,
+      mensaje : this.mensajeModalInfo,
+      mensaje2: this.mensajeModalInfo2,
+      tipoModalDocumentos : this.ModalAvisoDocumentos
+    },
+    disableClose : true,
+     height: '260px',
+     width: '570px',
+  });
+  dialogRef.afterClosed().subscribe(result  =>{
+    if (result && this.ModalConfirmSalir){
+      this.cerrar();
+    }
+    if (result && this.ModalAvisoDocumentos ){
+      this.onsubmit();
+    }
+  })
+}
+
 
 }

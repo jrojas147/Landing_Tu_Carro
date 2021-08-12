@@ -8,9 +8,9 @@ import { CentralesRiesgoService } from 'src/app/services/centrales-riesgo.servic
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ScanparamsService } from 'src/app/services/scanparams.service';
-import { ModalpreAprobadoComponent } from '../shared/modalpre-aprobado/modalpre-aprobado.component';
+//import { ModalpreAprobadoComponent } from '../shared/modalpre-aprobado/modalpre-aprobado.component';
 import { MatDialog } from '@angular/material';
-import { ModalRespuestaComponent } from '../shared/modal-respuesta/modal-respuesta.component';
+//import { ModalRespuestaComponent } from '../shared/modal-respuesta/modal-respuesta.component';
 import { ModalComponent } from '../shared/modal/modal.component';
 
 
@@ -51,6 +51,8 @@ export class FormularioViabilizacionComponent implements OnInit {
   TituloModRespuesta: string;
   MensajeModRespuesta: string;
   ejecutarFormularioPreaprobado: boolean = false;
+  respuesta: string = '';
+
 
   infoVehiculo: any;
   const = constantes;
@@ -277,14 +279,14 @@ export class FormularioViabilizacionComponent implements OnInit {
         }
         this.centralesRiesgo.apiModular(this.contacto).subscribe((res: any) => {
           this.centralesRiesgo.respuestaId = res.IdResultado;
-          let respuesta = res.Resultado;
-          let letraMensaje = res.ResultadoLetra;
+          this.respuesta = res.Resultado;
+          this.letraMensaje = res.ResultadoLetra;
          // this.cleanRespuesta(respuesta);
           this.centralesRiesgo.cargador = false;
 
           //Test
-          // this.letraMensaje = 'B';
-          // this.scanParams.enriquecido = true;
+           this.letraMensaje = 'C';
+           this.scanParams.enriquecido = true;
           this.AccionMensaje(this.letraMensaje);
         });
       }
@@ -320,21 +322,27 @@ export class FormularioViabilizacionComponent implements OnInit {
     }
   }
 
+
+
+
+
+
+
   validarTituloModalRespuesta():void{
     if ( this.VarianteAprobado =='sendMail' ){
-      this.TituloModRespuesta = 'Credito Prea-probado ';
+      this.TituloModRespuesta = 'Credito Pre-Aprobado';
       this.MensajeModRespuesta = 'Estas a punto de cumplir tus sueños, Para finalizar solo tienes que diligenciar el siguiente formato. Te estaremos contactando pronto';
     }
     if ( this.VarianteAprobado =='sendWhatsapp' ){
-      this.TituloModRespuesta = 'Credito Prea-probado, estas a punto de cumplir tus sueños';
-      this.MensajeModRespuesta = 'Te estamos contactando con nuestro asesor mediante whatsapp';
+      this.TituloModRespuesta = 'Credito Pre-Aprobado';
+      this.MensajeModRespuesta = 'Estas a punto de cumplir tus sueños, Te estamos contactando con nuestro asesor mediante whatsapp';
     }
   }
 
   procesarModalRespuesta(): void{
     const dialogRef =this.dialog.open(ModalComponent, {
       data: {
-      datacentrales: this.contacto,
+      datacentrales : this.contacto,
       Titulo: this.TituloModRespuesta,
       Mensaje: this.MensajeModRespuesta,
       sentEmail: this.sendMail,
@@ -343,8 +351,8 @@ export class FormularioViabilizacionComponent implements OnInit {
       ejecutarFormularioPreaprobado: this.ejecutarFormularioPreaprobado
       },
       disableClose : true,
-      height: '250px',
-      width: '490px',
+      height: '270px',
+      width: '450px',
     });
     dialogRef.afterClosed().subscribe(result  =>{
       console.log(`Ejecutar formulario preaprobado ${result}`)
@@ -357,10 +365,11 @@ export class FormularioViabilizacionComponent implements OnInit {
   procesarModalPreaprobado(){
     const dialogRef =this.dialog.open(ModalComponent, {
       data: {
-        datacentrales: this.contacto,
+        datacentrales : this.contacto,
         Titulo: 'Formulario Pre-Aprobado',
         Mensaje: "Falta poco, Ingresa tus datos para finalizar",
         tipoModal: 'FormularioPreAprobado',
+       // tipoActividadEconomica : this.actividadEconomicaValue
       },
       disableClose : true,
       height: '700px',
@@ -372,5 +381,26 @@ export class FormularioViabilizacionComponent implements OnInit {
       console.log(result);
     })
   }
+
+  procesarModalConfirmacionSalir(){
+    const dialogRef =this.dialog.open(ModalComponent, {
+      data: {
+        Titulo: '',
+        Mensaje: "Estas Seguro que deseas salir?",
+        tipoModal: 'ConirmacionSalir',
+      },
+      disableClose : true,
+      height: '100px',
+      width: '2000px'
+    });
+    dialogRef.afterClosed().subscribe(result  =>{
+      console.log(result);
+    })
+  }
+
+
+
+
+
 
 }

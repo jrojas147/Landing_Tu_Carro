@@ -26,12 +26,10 @@ import { GaugeChartModule } from 'angular-gauge-chart';
 import { UrlSeguraPipe } from './pipes/url-segura.pipe';
 import { RouterModule } from '@angular/router';
 import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
-import { ModalpreaprobadoModule } from './components/shared/modalpre-aprobado/modalpre-aprobado.module';
-import { ModalRespuestaComponent } from './components/shared/modal-respuesta/modal-respuesta.component';
-import { ModalRespuestaModule } from './components/shared/modal-respuesta/modal-respuesta.module';
-import { RespuestaComponent } from './components/formulario-viabilizacion/respuesta/respuesta.component';
 import { ModalComponent } from './components/shared/modal/modal.component';
 import { ModalModule } from './components/shared/modal/modal.module';
+import { RespuestaComponent } from './components/formulario-viabilizacion/respuesta/respuesta.component';
+import { ModalModuleInfo } from './components/shared/modal-Info/modalinfo.module';
 
 
 registerLocaleData(localeEs, 'es');
@@ -40,6 +38,7 @@ registerLocaleData(localeEs, 'es');
   declarations: [
     AppComponent,
     ViabilizaVehiculoComponent,
+    RespuestaComponent,
     EncabezadoComponent,
     FooterComponent,
     DetallesVehiculoComponent,
@@ -48,12 +47,10 @@ registerLocaleData(localeEs, 'es');
     CargadorComponent,
     SplashComponent,
     ModaltycComponent,
-    RespuestaComponent,
     MensajeErrorComponent,
     SpeedometerComponent,
     UrlSeguraPipe,
     NoFinanciableComponent,
-   // ModalComponent,
 
   ],
   imports: [
@@ -66,9 +63,7 @@ registerLocaleData(localeEs, 'es');
     CurrencyMaskModule,
     GaugeChartModule,
     ModalModule,
-
-    ModalpreaprobadoModule,
-    ModalRespuestaModule,
+    ModalModuleInfo,
     RouterModule.forRoot([])
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }],

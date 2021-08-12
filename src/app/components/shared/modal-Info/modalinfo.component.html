@@ -1,0 +1,23 @@
+<section class="section-modal">
+    <div class="encabezado">
+      <!-- <img [src]="const.cliente" alt=""> -->
+      <div class="titulo"> <h1> {{dataInfo.titulo}}  </h1>
+        </div>
+    </div>
+    <div class="body">
+      <div class="body1">{{dataInfo.mensaje}}</div><br>
+      <div class="body2" *ngIf="dataInfo.tipoModalDocumentos">{{dataInfo.mensaje2}}</div>
+    </div>
+    <div class="contBotonPaso">
+      <div class="BtonAccion" *ngIf="dataInfo.tipoModalSalir" >
+        <button mat-button color="primary" [mat-dialog-close]="true">Salir</button>
+      </div>
+      <div class="BtnMantener" *ngIf="dataInfo.tipoModalSalir">
+        <button mat-button color="primary" (click)="Mantener()">Mantener</button>
+      </div>
+      <div class="BtonConfirmacion" *ngIf="dataInfo.tipoModalDocumentos" >
+        <button mat-button color="primary" [mat-dialog-close]="true">Aceptar</button>
+      </div>
+      </div>
+
+  </section>

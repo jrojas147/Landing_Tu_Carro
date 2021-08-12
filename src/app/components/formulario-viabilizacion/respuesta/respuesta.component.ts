@@ -6,8 +6,9 @@ import { ApiMercadolibreService } from 'src/app/services/api-mercadolibre.servic
 import { CentralesRiesgoService } from 'src/app/services/centrales-riesgo.service';
 import { ScanparamsService } from 'src/app/services/scanparams.service';
 import { MatDialog } from '@angular/material';
-import { ModalpreAprobadoComponent } from '../../shared/modalpre-aprobado/modalpre-aprobado.component';
-import { ModalRespuestaComponent } from '../../shared/modal-respuesta/modal-respuesta.component';
+import { ModalComponent } from '../../shared/modal/modal.component';
+//import { ModalpreAprobadoComponent } from '../../shared/modalpre-aprobado/modalpre-aprobado.component';
+//import { ModalRespuestaComponent } from '../../shared/modal-respuesta/modal-respuesta.component';
 
 @Component({
   selector: 'app-respuesta',
@@ -32,6 +33,13 @@ export class RespuestaComponent implements OnInit {
   sentmail: boolean;
   sentWap: boolean;
 
+  TituloModRespuesta
+  MensajeModRespuesta
+  sendMail
+  sendWhatsapp
+
+  letraMensaje: string = '';
+  varianteAprobado: string = '';
 
   constructor(
     private dialog: MatDialog,
@@ -40,42 +48,63 @@ export class RespuestaComponent implements OnInit {
     public centralesRiesgo: CentralesRiesgoService,
     public scanParams: ScanparamsService
     ) {
+      console.log(formularioViable)
   }
 
   ngOnInit() {
-    this.ObtenrLetra();
-    this.captarwhps();
+    this.sendMail = this.centralesRiesgo.sendMail;
+    this.sentWap = this.centralesRiesgo.sendWhatsapp;
+    this.ObtenrLetra();//
+    this.captarwhps();//
+   // this.accionLetra()
   }
+
+  ConectarWhatsapp() {
+    window.open("https://cariai.com/santanderdigitalchannel/santanderdigitalchannel");
+  }
+
+
 
   captarwhps(){
     this.sentmail = this.formularioViable.sendMail,
     this.sentWap = this.formularioViable.sendWhatsapp
   }
 
-  procesarModal() {
-    const dialogRef = this.dialog.open(ModalpreAprobadoComponent, {
-      data: this.centralesRiesgo
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log('Dialog result: ${result}');
-     })
-  }
+  // procesarModal() {
+  //   const dialogRef = this.dialog.open(ModalpreAprobadoComponent, {
+  //     data: this.centralesRiesgo
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     // console.log('Dialog result: ${result}');
+  //    })
+  // }
 
   ObtenrLetra(){
     const letraR = this.formularioViable.AccionMensaje;
   }
 
-  procesarRespuesta(){
-    const dialogRef = this.dialog.open(ModalRespuestaComponent, {
-      data:  {
-        // sentEmail: this.sendMail,
-        // sendWhatsapp: this.sendWhatsapp
-      }
+   procesarRespuesta(){
+    const dialogRef =this.dialog.open(ModalComponent, {
+      data: {
+      datacentrales : this.centralesRiesgo,
+      Titulo: this.TituloModRespuesta,
+      Mensaje: this.MensajeModRespuesta,
+      sentEmail: this.sendMail,
+      sendWhatsapp: this.sendWhatsapp,
+      tipoModal: 'Generico',
+     // ejecutarFormularioPreaprobado: this.ejecutarFormularioPreaprobado
+      },
+      disableClose : true,
+      height: '270px',
+      width: '450px',
     });
-    dialogRef.afterClosed().subscribe(result => {
-     // console.log('Dialog result: ${result}');
+    dialogRef.afterClosed().subscribe(result  =>{
+      console.log(`Ejecutar formulario preaprobado ${result}`)
+      if(result === true){
+      //  this.procesarModalPreaprobado();
+      }
     })
-  }
+   }
 
 
 }

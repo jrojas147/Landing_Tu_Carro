@@ -2,7 +2,8 @@
     <div class="contenido">
       <div class="respuesta" id="aprobado" [@animationFadeOut]="centralesRiesgo.respuestaId">  <!--Validar estilos y cambiar nombre-->
 
-
+        {{sendMail}}
+        {{sendWhatsapp}}
 
         <div class="caso" *ngIf="formularioViable.letraMensaje === 'A'">
           <img [src]="const.negado" class="negado">
@@ -63,12 +64,10 @@
     <!-- Botones -->
     <button (click)="procesarRespuesta()"></button>
     <div class="contBoton center">
-         <a *ngIf="centralesRiesgo.sendMail" href="mailto:digital@santanderconsumer.co?subject=Soy-preaprobado">
+         <!-- <a *ngIf="centralesRiesgo.sendMail" href="mailto:digital@santanderconsumer.co?subject=Soy-preaprobado">
             <button id="stepThree" mat-button (click)="procesarModal()">Enviar email</button>
-        </a>
-        <a *ngIf="centralesRiesgo.sendWhatsapp" href="https://cariai.com/santanderdigitalchannel/santanderdigitalchannel">
-            <button id="stepThree" mat-button>Chatea con tu asesor</button>
-        </a>
-        <button id="stepThreeNoImportant" mat-button (click)="apiMercadolibre.volverNavegador()">Volver a MercadoLibre</button>
+        </a> -->
+            <button id="stepThree" mat-button *ngIf="centralesRiesgo.sendWhatsapp" (click)="ConectarWhatsapp()">Chatea con tu asesor</button>
+        <button id="stepThreeNoImportant" mat-button (click)="ConectarWhatsapp()">Volver a MercadoLibre</button>
     </div>
 </div>
