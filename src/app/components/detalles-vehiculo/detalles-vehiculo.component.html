@@ -1,5 +1,4 @@
 <div *ngIf="infoVehiculo" class="contenedor">
-
     <div class="titulo">
         <p>
             Estás muy cerca de tener tu <b>{{ infoVehiculo.title }}</b>
@@ -14,7 +13,7 @@
         <div class="detallesTecnicos">
             <div class="itemInfo" *ngFor="let item of informacion">
                 <b>{{item.nombre}}:</b> {{item.valor}}</div>
-            </div>        
+            </div>
         <app-footer></app-footer>
     </div>
 </div>

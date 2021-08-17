@@ -1,29 +1,67 @@
 @import '../scss/variables';
 @import "../scss/mixins";
 
-.superContenedor{
-    background-color: $color-grisUno;
-    .contenedor{
-        display: grid;
-        grid-template-rows: 1fr;
-        grid-template-columns: 1fr;
-        padding: 0% 5% 0% 5%;
-        @include Asmall(){
-            padding: 0;
-            margin-top: 10vh;
-        }
 
-        app-mensaje-error{            
-            z-index: 1;
-            margin-top: 5%;
-        }
+     .contenedor{
+         display: grid;
+         grid-template-rows: 1fr;
+         grid-template-columns: 1fr;
+         padding: 0% 5% 0% 5%;
 
-        app-mensaje-error , app-viabiliza-vehiculo{
-            grid-row: 1;
-            grid-column: 1;
-        }
-    }
-}
+         @include Minim{
+          padding: 0;
+          margin-top: 10vh;
+         }
+         @include Asmall(){
+             padding: 0;
+             margin-top: 10vh;
+         }
+
+         app-mensaje-error{
+             z-index: 1;
+             margin-top: 5%;
+         }
+
+         app-mensaje-error , app-viabiliza-vehiculo{
+             grid-row: 1;
+             grid-column: 1;
+         }
+     }
+
+/*.superContenedor{
+  background-color:beige;
+
+  @include Minim{
+    background-color: deepskyblue;
+  }
+
+  @include Asmall{
+    background-color: rgb(1, 1, 12);
+  }
+  @include smallTablet{
+    background-color: blueviolet;
+  }
+
+  @include tabletLaptop{
+    background-color: cadetblue;
+  }
+
+  @include laptopDesktop{
+    background-color: chartreuse;
+  }
+
+  @include IpadPro{
+    background-color: darkcyan;
+  }
+
+  @include desktopFull{
+    background-color: darkred;
+  }
+
+  @include full{
+    background-color: deeppink;
+  }
+}*/
 
 .msjEnriquecido{
     margin: 20px 30px 30px 30px;

@@ -8,10 +8,9 @@ import { CentralesRiesgoService } from 'src/app/services/centrales-riesgo.servic
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ScanparamsService } from 'src/app/services/scanparams.service';
-//import { ModalpreAprobadoComponent } from '../shared/modalpre-aprobado/modalpre-aprobado.component';
 import { MatDialog } from '@angular/material';
-//import { ModalRespuestaComponent } from '../shared/modal-respuesta/modal-respuesta.component';
 import { ModalComponent } from '../shared/modal/modal.component';
+import { ModalinfoComponent } from '../shared/modal-Info/modalinfo.component';
 
 
 @Component({
@@ -50,7 +49,7 @@ export class FormularioViabilizacionComponent implements OnInit {
   VarianteAprobado: string;
   TituloModRespuesta: string;
   MensajeModRespuesta: string;
-  ejecutarFormularioPreaprobado: boolean = false;
+  ejecutarFormularioPreaprobado: boolean = false;//Validar Funcionalidad
   respuesta: string = '';
 
 
@@ -64,7 +63,7 @@ export class FormularioViabilizacionComponent implements OnInit {
 
   cargando: boolean = false;
   desaparecerDetallesMobile: boolean = false;
-  resultadoCalculadora: any = {};
+  resultadoCalculadora: any = {}
 
   contacto: ContactoViable = {
     DatosBasicos: {
@@ -279,15 +278,20 @@ export class FormularioViabilizacionComponent implements OnInit {
         }
         this.centralesRiesgo.apiModular(this.contacto).subscribe((res: any) => {
           this.centralesRiesgo.respuestaId = res.IdResultado;
+          //test
+          //res.ResultadoLetra = 'C';
+          this.centralesRiesgo.respuestaLetra =res.ResultadoLetra;//Nvo
           this.respuesta = res.Resultado;
           this.letraMensaje = res.ResultadoLetra;
-         // this.cleanRespuesta(respuesta);
           this.centralesRiesgo.cargador = false;
 
-          //Test
-           this.letraMensaje = 'C';
-           this.scanParams.enriquecido = true;
           this.AccionMensaje(this.letraMensaje);
+
+
+          //Test
+          //  this.letraMensaje = 'A';
+          //  this.scanParams.enriquecido = true;
+          // this.AccionMensaje(this.letraMensaje);
         });
       }
     });
@@ -297,7 +301,8 @@ export class FormularioViabilizacionComponent implements OnInit {
     let validacion = this.contacto
     if (letraMensaje === 'A') {
       if (this.scanParams.enriquecido == true){
-        this.sendWhatsapp = true;
+        this.centralesRiesgo.sendWhatsapp = true;//Joan Ultimo
+        this.sendWhatsapp = true;//
         this.VarianteAprobado = 'sendWhatsapp';
         this.validarTituloModalRespuesta();
         this.procesarModalRespuesta();
@@ -305,6 +310,7 @@ export class FormularioViabilizacionComponent implements OnInit {
     }
     if (letraMensaje === 'B') {
       if (this.scanParams.enriquecido == true ){
+        this.centralesRiesgo.sendWhatsapp = true;//Joan Ultimo
         this.sendWhatsapp = true;
         this.VarianteAprobado = 'sendWhatsapp';
         this.validarTituloModalRespuesta();
@@ -313,6 +319,7 @@ export class FormularioViabilizacionComponent implements OnInit {
     }
     if (letraMensaje === 'C' ) {
       if( this.scanParams.enriquecido == true){
+        this.centralesRiesgo.sendMail = true;//Ultimo Joan
         this.sendMail = true;
          this.VarianteAprobado = 'sendMail';
          this.validarTituloModalRespuesta();
@@ -322,24 +329,24 @@ export class FormularioViabilizacionComponent implements OnInit {
     }
   }
 
-
-
-
-
-
+  cargarParametros(): string{
+    let LetraRespuesta: string;
+    LetraRespuesta = this.letraMensaje;
+    return LetraRespuesta;
+  }
 
   validarTituloModalRespuesta():void{
     if ( this.VarianteAprobado =='sendMail' ){
       this.TituloModRespuesta = 'Credito Pre-Aprobado';
-      this.MensajeModRespuesta = 'Estas a punto de cumplir tus sueños, Para finalizar solo tienes que diligenciar el siguiente formato. Te estaremos contactando pronto';
+      this.MensajeModRespuesta = 'Estas a punto de cumplir tus sueños, para finalizar solo tienes que diligenciar el siguiente formato. Te estaremos contactando pronto';
     }
     if ( this.VarianteAprobado =='sendWhatsapp' ){
       this.TituloModRespuesta = 'Credito Pre-Aprobado';
-      this.MensajeModRespuesta = 'Estas a punto de cumplir tus sueños, Te estamos contactando con nuestro asesor mediante whatsapp';
+      this.MensajeModRespuesta = 'Estas a punto de cumplir tus sueños, te estamos contactando con nuestro asesor mediante WhatsApp';
     }
   }
 
-  procesarModalRespuesta(): void{
+  procesarModalRespuesta(): void{//Carga primer modal
     const dialogRef =this.dialog.open(ModalComponent, {
       data: {
       datacentrales : this.contacto,
@@ -348,10 +355,10 @@ export class FormularioViabilizacionComponent implements OnInit {
       sentEmail: this.sendMail,
       sendWhatsapp: this.sendWhatsapp,
       tipoModal: 'Generico',
-      ejecutarFormularioPreaprobado: this.ejecutarFormularioPreaprobado
+      ejecutarFormularioPreaprobado: this.ejecutarFormularioPreaprobado,
       },
       disableClose : true,
-      height: '270px',
+      height: '300px',
       width: '450px',
     });
     dialogRef.afterClosed().subscribe(result  =>{
@@ -369,7 +376,6 @@ export class FormularioViabilizacionComponent implements OnInit {
         Titulo: 'Formulario Pre-Aprobado',
         Mensaje: "Falta poco, Ingresa tus datos para finalizar",
         tipoModal: 'FormularioPreAprobado',
-       // tipoActividadEconomica : this.actividadEconomicaValue
       },
       disableClose : true,
       height: '700px',
@@ -381,26 +387,4 @@ export class FormularioViabilizacionComponent implements OnInit {
       console.log(result);
     })
   }
-
-  procesarModalConfirmacionSalir(){
-    const dialogRef =this.dialog.open(ModalComponent, {
-      data: {
-        Titulo: '',
-        Mensaje: "Estas Seguro que deseas salir?",
-        tipoModal: 'ConirmacionSalir',
-      },
-      disableClose : true,
-      height: '100px',
-      width: '2000px'
-    });
-    dialogRef.afterClosed().subscribe(result  =>{
-      console.log(result);
-    })
-  }
-
-
-
-
-
-
 }

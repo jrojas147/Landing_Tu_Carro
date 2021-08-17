@@ -6,12 +6,19 @@
     grid-template-columns: 7% auto 7%;
     background-color: $color-principal;
     height: 10vh;
+    @include Minim(){
+      grid-template-columns: auto;
+      grid-template-columns: 5% auto 5%;
+      position: fixed;
+      width: 100%;
+      z-index: 4;
+  }
     @include Asmall(){
         grid-template-columns: auto;
         grid-template-columns: 5% auto 5%;
         position: fixed;
         width: 100%;
-        z-index: 4; 
+        z-index: 4;
     }
     img{
         grid-column: 2;

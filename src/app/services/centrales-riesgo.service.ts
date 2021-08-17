@@ -22,6 +22,7 @@ export class CentralesRiesgoService {
   modeloCarro;
   plazo: number;
   urlVehiculo :string;
+  respuestaLetra: string;
 
   public observableAutenticar: any;
   public autenticar: any = 0;

@@ -9,11 +9,11 @@
       <div class="body2" *ngIf="dataInfo.tipoModalDocumentos">{{dataInfo.mensaje2}}</div>
     </div>
     <div class="contBotonPaso">
-      <div class="BtonAccion" *ngIf="dataInfo.tipoModalSalir" >
-        <button mat-button color="primary" [mat-dialog-close]="true">Salir</button>
-      </div>
       <div class="BtnMantener" *ngIf="dataInfo.tipoModalSalir">
         <button mat-button color="primary" (click)="Mantener()">Mantener</button>
+      </div>
+      <div class="BtnSalir" *ngIf="dataInfo.tipoModalSalir" >
+        <button mat-button color="primary" [mat-dialog-close]="true">Salir</button>
       </div>
       <div class="BtonConfirmacion" *ngIf="dataInfo.tipoModalDocumentos" >
         <button mat-button color="primary" [mat-dialog-close]="true">Aceptar</button>

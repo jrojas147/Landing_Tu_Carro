@@ -19,10 +19,13 @@
     padding: 1px0 16px;
     line-height: 36px;
     text-align: center !important;
+
     @include smallTablet{
       display: block;
     }
-
+    @include IpadPro{
+      display: grid !important;
+    }
     @include Asmall() {
       width: 80%;
       height: 11vh;
@@ -31,30 +34,116 @@
     @include tabletLaptop(){
         grid-template-columns: 37% 37% 37%;
     }
+    @include laptopDesktop{
+        grid-template-columns: 37% 37% 37%;
+    }
+    @include IpadPro{
+      grid-template-columns: 37% 37% 37%;
+    }
+    @include desktopFull{
+      grid-template-columns: 37% 37% 37%;
+    }
+    @include full{
+      grid-template-columns: 37% 37% 37%;
+    }
+  }
 
-    .BtonAccion{
+    .BtnMantener{
+      font-size: 10px !important;
+      position: relative;
+      top: 0px;
+      left: 5px;
+      @include Minim{
+        position: relative;
+        top: 0px;
+        left: 30px;
+      }
+      @include Asmall{
+        position: relative;
+        top: 20px;
+        left: 30px;
+      }
+      @include smallTablet{
+        position: relative;
+        top: 10px;
+        left: -37px;
+      }
+      @include tabletLaptop{
+        position: relative;
+        top:  20px;
+        left: 160px;
+      }
+      @include laptopDesktop{
+        position: relative;
+        top: 10px;
+        left: 40px;
+      }
+      @include IpadPro {
+        position: relative ;
+        top:  12px;
+        left: 40px;
+      }
+      @include desktopFull{
+        position: relative;
+        top: 12px;
+        left: 35px;
+      }
+      @include full{
+        position: relative;
+        top: 12px;
+        left: 35px;
+      }
+
+    }
+    .BtnSalir{
       font-size: 10px !important;
       width: 110% !important;
       position: relative;
       top: 20px;
       left: 15px;
-      @include Asmall{
-        top: 10px;
+      @include Minim{
+        position: relative;
+        top: 8px;
         left: 20px;
+      }
+      @include Asmall{
+        position: relative;
+        top: 0px;
+        left: 38px;
+      }
+      @include smallTablet{
+        position: relative;
+        top: 20px;
+        left: -18px;
+      }
+      @include tabletLaptop{
+        position: relative;
+        top:  15px;
+        left: 50px;
+      }
+      @include laptopDesktop{
+        position: relative;
+        top: 10px;
+        left: 35px;
+      }
+      @include IpadPro{
+        position: relative;
+        top: 12px;
+        left: 60px;
+      }
+      @include desktopFull{
+        position: relative;
+        top: 12px;
+        left: 50px;
+      }
+      @include full{
+        position: relative;
+        top: 12px;
+        left: 50px;
       }
     }
 
-    .BtnMantener{
-      font-size: 10px !important;
-      position: relative;
-      top: 20px;
-      left: 95px;
-      @include Asmall{
-        position: relative;
-        top: 20px;
-        left: 20px;
-      }
-    }
+
 
     .BtonConfirmacion{
       font-size: 10px !important;
@@ -88,10 +177,6 @@
     }
 
 
-
-
-
-  }
 
 
 

@@ -14,16 +14,29 @@
     }
 }
 
+.mat-horizontal-content-container{//joan
+  min-height: 8vh;//Final Si
+  @include desktopFull{
+    min-height: 55vh !important;
+  }
+}
+
 .contCampoDos{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 1.5%;
+    @include Minim{
+      margin: 0 0 6% 0;
+    }
     @include Asmall(){
         margin: 0 0 6% 0;
     }
 }
 
 .contCampoDos#segundo{
+    @include Minim(){
+      grid-template-columns: auto;
+    }
     @include Asmall(){
         grid-template-columns: auto;
     }
@@ -32,6 +45,9 @@
 .contCampoUno{
     .tituloCampo#cuotas{
         margin: 0 0 2.8% 0;
+        @include Minim(){
+          margin: 0 0 10% 0;
+        }
         @include Asmall(){
             margin: 0 0 10% 0;
         }
@@ -59,6 +75,9 @@
 
 form{
     padding: 7.5% 10% 0 10%;
+    @include Minim(){
+        padding: 2% 4%;
+    }
     @include Asmall(){
         padding: 2% 4%;
     }
@@ -66,6 +85,9 @@ form{
 
 .contCampoUno, .contCampoDos{
     margin: 0 0 4% 0;
+    @include Minim(){
+        margin: 3% 0 6% 0;
+    }
     @include Asmall(){
         margin: 3% 0 6% 0;
     }

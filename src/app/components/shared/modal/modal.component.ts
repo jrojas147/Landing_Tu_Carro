@@ -1,3 +1,4 @@
+import { DatosFinancieros } from './../../../interfaces/datos-financieros';
 import { Component, OnInit, Inject } from '@angular/core';
 import { constantes } from 'src/constants/constantes';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -9,6 +10,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, Validators } from '@a
 import * as moment from 'moment';
 import { FormularioPreAprobadoServiceService } from 'src/app/services/formulario-pre-aprobado.service.service';
 import { ModalinfoComponent } from '../modal-Info/modalinfo.component';
+
 
 
 
@@ -43,6 +45,8 @@ export class ModalComponent implements OnInit {
   tituloModalInfo: string = '';
   mensajeModalInfo: string = '';
   mensajeModalInfo2: string = '';
+  tipoDocumento: string = '';
+  actividadEconomica: string = '';
 
 
   constructor(
@@ -53,9 +57,10 @@ export class ModalComponent implements OnInit {
       Mensaje: string,
       sentEmail: boolean,
       sendWhatsapp: boolean,
-      tipoModal: string,
+      tipoModal: string,//Confirmar  Eliminar
       datacentrales : any,
-      ejecutarFormularioPreaprobado: boolean
+      ejecutarFormularioPreaprobado: boolean,
+      actividadEconomicaValue: number;
      },
       private fb: FormBuilder,//
       private http: HttpClient,//
@@ -104,8 +109,21 @@ export class ModalComponent implements OnInit {
     this.messageBody = '¡Estoy a punto de cumplir mi sueño!' + '\n' + '\n';
     this.messageBody = this.messageBody + 	'Para eso les envío los datos solicitados y la documentación requerida para obtener mi crédito vehicular:' + '\n' + '\n';
     this.messageBody = this.messageBody + 'Nombre:  ' + this.dataModRespuesta.datacentrales.DatosBasicos.Nombre1 + '\n';
-    this.messageBody = this.messageBody + 'Tipo Documento:  ' + this.dataModRespuesta.datacentrales.DatosBasicos.TipoDocumento + '\n';
+    if ( this.dataModRespuesta.datacentrales.DatosBasicos.TipoDocumento === 1 ){
+      this.tipoDocumento = "Cédula de Ciudadanía"}
+    if ( this.dataModRespuesta.datacentrales.DatosBasicos.TipoDocumento === 2 ){
+      this.tipoDocumento = "Cédula de Extranjería"}
+    if ( this.dataModRespuesta.datacentrales.DatosBasicos.TipoDocumento === 3 ){
+      this.tipoDocumento = "NIT"}
+    this.messageBody = this.messageBody + 'Tipo Documento:  ' + this.tipoDocumento +  '\n';
     this.messageBody = this.messageBody + 'Número Documento:  ' + this.dataModRespuesta.datacentrales.DatosBasicos.NumeroDocumento + '\n';
+    if ( this.dataModRespuesta.datacentrales.DatosFinancieros.ActividadIndependiente === 15 ){
+      this.actividadEconomica = "Pensionado"}
+    if ( this.dataModRespuesta.datacentrales.DatosFinancieros.ActividadIndependiente === 16 ){
+      this.actividadEconomica = "Empleado"}
+    if ( this.dataModRespuesta.datacentrales.DatosFinancieros.ActividadIndependiente === 3  ){
+      this.actividadEconomica = "Independiente"}
+    this.messageBody = this.messageBody + 'Tipo Actividad Economica:  ' + this.actividadEconomica + '\n';
     this.messageBody = this.messageBody + 'Celular:  ' + this.dataModRespuesta.datacentrales.DatosBasicos.Celular + '\n';
     this.messageBody = this.messageBody + 'Email:  ' + this.dataModRespuesta.datacentrales.DatosBasicos.CorreoPersonal + '\n';
     this.messageBody = this.messageBody + 'Ingresos:  ' + this.dataModRespuesta.datacentrales.DatosFinancieros.IngresoMensual + '\n';
@@ -172,7 +190,6 @@ export class ModalComponent implements OnInit {
    }
 
    ProcesarSalir(){
-     debugger;
     this.ModalAvisoDocumentos = false;
    this.ModalConfirmSalir = true;
    this.mensajeModalInformativo();
@@ -209,8 +226,8 @@ ejecutarModalAvisoSalir(){
       tipoModalDocumentos : this.ModalAvisoDocumentos
     },
     disableClose : true,
-     height: '190px',
-     width: '380px',
+     height: '230px',
+     width: '350px',
   });
   dialogRef.afterClosed().subscribe(result  =>{
     if (result && this.ModalConfirmSalir){

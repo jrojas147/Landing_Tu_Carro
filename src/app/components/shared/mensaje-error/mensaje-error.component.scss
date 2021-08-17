@@ -6,6 +6,10 @@
     border-radius: 10px;
     background-color: $color-blanco;
     padding: 3%;
+    @include Minim(){
+      margin: 4% 4%;
+      padding: 4% 0;
+  }
     @include Asmall(){
         margin: 4% 4%;
         padding: 4% 0;
@@ -14,10 +18,13 @@
         display: grid;
         grid-template-columns: auto 60%;
         height: 100%;
+        @include Minim(){
+          grid-template-columns: auto;
+      }
         @include Asmall(){
-            grid-template-columns: auto; 
+            grid-template-columns: auto;
         }
-        
+
         .mensaje{
             grid-column: 1;
             grid-row: 1;

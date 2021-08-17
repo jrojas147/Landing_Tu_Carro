@@ -3,7 +3,7 @@
 @import "./fonts";
 
 * {
-    box-sizing: border-box;
+    box-sizing: border-box;//Titulos
     margin: 0;
     padding: 0;
     transition: all 0.5s;
@@ -20,7 +20,7 @@
     }
   }
 
-  .advertencia{
+  .advertencia{//error al ingrtrsar cedula extrabngeria
     color: orange;
     font-size: 9px;
   }
@@ -31,7 +31,7 @@
     height: auto;
   }
 
-  app-cargador{
+  app-cargador{//cargador html peincipal animacion
     z-index: 3;
   }
 
@@ -47,12 +47,17 @@
   color: $color-grisDos;
 }
 
+////
 /* Estilos especificos Stepper Material */
 .mat-horizontal-stepper-header-container{
   display: grid !important;
   grid-template-columns: repeat(3, auto) !important;
   grid-template-rows: 1fr !important;
   padding: 20px 80px 0 80px;
+  @include Minim{
+    padding: 0px 5%;
+    margin: 0 auto;
+  }
   @include Asmall(){
     padding: 0px 5%;
     margin: 0 auto;
@@ -98,6 +103,9 @@
   border: 1px solid !important;
   grid-row: 1 !important;
   margin: 0 -70px !important;
+  @include Minim(){
+    margin: 0 -50px !important;
+  }
   @include Asmall(){
     margin: 0 -50px !important;
   }
@@ -138,12 +146,15 @@
 .mat-horizontal-content-container{
   background-color: $color-blanco;
   padding: 0 !important;
-  min-height: 100vh;
+  // min-height: 100vh;
 }
 
 .mat-form-field-appearance-outline .mat-form-field-infix{
   padding: 2% 0 2% 0 !important;
   font-size: 15.2px !important;
+  @include Minim(){
+    padding: 4% 0 4% 0 !important;
+  }
   @include Asmall(){
     padding: 4% 0 4% 0 !important;
   }
@@ -163,6 +174,10 @@
   border-top-right-radius: $radio-borde !important;
   border-bottom-right-radius: $radio-borde !important;
   box-shadow: 3px 1px 5px 0px #e0e0e0;
+  @include Minim(){
+    border-radius: 10px !important;
+    margin: 4% !important;
+  }
   @include Asmall(){
     border-radius: 10px !important;
     margin: 4% !important;
@@ -195,6 +210,9 @@
   color: $color-blanco !important;
   border-radius: 20px !important;
   padding: 1% 100px ;
+  @include Minim(){
+    padding: 1% 15% !important;
+  }
   @include Asmall(){
     padding: 1% 15% !important;
   }
@@ -253,6 +271,9 @@ span.mat-button-wrapper{
 
 .gauge-chart div svg {
   height: 190px;
+  @include Minim(){
+    height: 135px;
+  }
   @include Asmall(){
     height: 135px;
   }
@@ -263,6 +284,9 @@ span.mat-button-wrapper{
 }
 
 .noMobile{
+  @include Minim(){
+    display: none;
+  }
   @include Asmall(){
     display: none;
   }
@@ -288,6 +312,20 @@ span.mat-button-wrapper{
   @include full(){
     display: none;
   }
+}
+
+
+.mat-dialog-container {
+  display: block;
+  padding: 14px !important;
+  border-radius: 4px;
+  box-sizing: border-box;
+  overflow: auto;
+  outline: 0;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  max-height: inherit;
 }
 
 

@@ -2,19 +2,7 @@
     <div class="contenido">
       <div class="respuesta" id="aprobado" [@animationFadeOut]="centralesRiesgo.respuestaId">  <!--Validar estilos y cambiar nombre-->
 
-        {{sendMail}}
-        {{sendWhatsapp}}
-
-        <div class="caso" *ngIf="formularioViable.letraMensaje === 'A'">
-          <img [src]="const.negado" class="negado">
-          <p class="mensajeNeg">
-              ¡Ups ocurrió un error!
-          </p>
-          <p class="comentario">
-              Tuvimos un problema, por favor intenta más tarde.
-          </p>
-        </div>
-        <div class="caso" *ngIf="formularioViable.letraMensaje === 'B'">
+        <div class="caso" *ngIf="centralesRiesgo.respuestaLetra === 'A' && scanParams.enriquecido">
           <img [src]="const.aprobado" alt="aprobado">
           <p class="mensaje">
               Aprobado
@@ -24,7 +12,17 @@
             ¡Felicitaciones! Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado haciendo click en el botón o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592
           </p>
         </div>
-        <div class="caso" *ngIf="formularioViable.letraMensaje === 'C'">
+        <div class="caso" *ngIf="centralesRiesgo.respuestaLetra ===  'B' && scanParams.enriquecido">
+          <img [src]="const.aprobado" alt="aprobado">
+          <p class="mensaje">
+              Aprobado
+              Tu Solicitud es viable
+          </p>
+          <p class="comentario">
+            ¡Felicitaciones! Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado haciendo click en el botón o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592
+          </p>
+        </div>
+       <div class="caso" *ngIf="centralesRiesgo.respuestaLetra ===  'C' && scanParams.enriquecido">
           <img [src]="const.aprobado" alt="aprobado">
           <p class="mensaje">
               Pre-Aprobado<br>
@@ -41,7 +39,7 @@
             </div>
           </div>
         </div>
-        <div class="caso" *ngIf="formularioViable.letraMensaje === 'D'">
+        <div class="caso" *ngIf="centralesRiesgo.respuestaLetra ===  'D' && scanParams.enriquecido">
           <img [src]="const.negado" class="negado">
           <p class="mensajeNeg">
               Lo sentimos
@@ -50,7 +48,16 @@
               Tu solicitud no es viable en este momento.
           </p>
         </div>
-        <div class="caso" *ngIf="formularioViable.letraMensaje == 'E'">
+        <div class="caso" *ngIf="centralesRiesgo.respuestaLetra ===  'E' && scanParams.enriquecido">
+          <img [src]="const.negado" class="negado">
+          <p class="mensajeNeg">
+              ¡Ups ocurrió un error!
+          </p>
+          <p class="comentario">
+              Tuvimos un problema, por favor intenta más tarde.
+          </p>
+        </div>
+        <div class="caso" *ngIf="centralesRiesgo.respuestaLetra ===  null && scanParams.enriquecido">
           <img [src]="const.negado" class="negado">
           <p class="mensajeNeg">
               ¡Ups ocurrió un error!
@@ -61,13 +68,25 @@
         </div>
       </div>
     </div>
-    <!-- Botones -->
-    <button (click)="procesarRespuesta()"></button>
     <div class="contBoton center">
-         <!-- <a *ngIf="centralesRiesgo.sendMail" href="mailto:digital@santanderconsumer.co?subject=Soy-preaprobado">
-            <button id="stepThree" mat-button (click)="procesarModal()">Enviar email</button>
-        </a> -->
-            <button id="stepThree" mat-button *ngIf="centralesRiesgo.sendWhatsapp" (click)="ConectarWhatsapp()">Chatea con tu asesor</button>
-        <button id="stepThreeNoImportant" mat-button (click)="ConectarWhatsapp()">Volver a MercadoLibre</button>
+      <button
+        id="stepThree"
+        mat-button
+        *ngIf="centralesRiesgo.sendMail && scanParams.enriquecido"
+        (click)="procesarModalPreaprobado()">
+          Diligenciar Formulario
+      </button>
+      <button
+        id="stepThree"
+        mat-button
+        *ngIf="centralesRiesgo.sendWhatsapp && scanParams.enriquecido"
+        (click)="ConectarWhatsapp()">
+        Chatea con tu asesor
+      </button>
+      <button
+        id="stepThreeNoImportant"
+        mat-button (click)="apiMercadolibre.volverNavegador()">
+        Volver a MercadoLibre
+      </button>
     </div>
 </div>

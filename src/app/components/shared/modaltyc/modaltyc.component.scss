@@ -23,6 +23,10 @@
             height: 65vh;
             overflow: auto;
             padding: 0 10px;
+            @include Minim(){
+              height: 80vh;
+              padding: 0;
+          }
             @include Asmall(){
                 height: 80vh;
                 padding: 0;
@@ -33,7 +37,7 @@
         }
         .parrafo{
             text-align: justify;
-        }        
+        }
     }
     .cntboton{
         display: grid;

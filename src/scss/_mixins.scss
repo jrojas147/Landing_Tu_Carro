@@ -1,12 +1,19 @@
-@mixin Asmall(){
-    @media only screen and (max-width: #{$Asmall}){
+@mixin Minim(){//Inferiores a 379 px
+  @media only screen and (max-width:  #{$mimi}){
+    @content;
+    }
+  }
+
+
+@mixin Asmall(){// hasta iphone X
+    @media (min-width: #{$AsmalMin}) and (max-width: #{$Asmall}){
         @content;
     }
 }
 
 // Small devices (landscape phones, 576px and   up)
 
-@mixin smallTablet(){
+@mixin smallTablet(){//576 - 767.98
     @media (min-width: #{$small}) and (max-width: #{$Atablet}){
         @content;
     }
@@ -26,6 +33,15 @@
     @media (min-width: #{$laptop}) and (max-width: #{$Adesktop}){
         @content;
     }
+}
+
+
+// Largue devices (Ipad Pro, 1024 px - 1.199 px )
+
+@mixin  IpadPro (){
+  @media (min-width: #{$IpadProMin}) and (max-width: #{$IpadProMax}){
+    @content;
+  }
 }
 
 // Extra large devices (large desktops, 1200px and up)
