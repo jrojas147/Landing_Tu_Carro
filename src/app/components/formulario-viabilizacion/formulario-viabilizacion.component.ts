@@ -279,8 +279,8 @@ export class FormularioViabilizacionComponent implements OnInit {
         this.centralesRiesgo.apiModular(this.contacto).subscribe((res: any) => {
           this.centralesRiesgo.respuestaId = res.IdResultado;
           //test
-          //res.ResultadoLetra = 'C';
-          this.centralesRiesgo.respuestaLetra =res.ResultadoLetra;//Nvo
+          res.ResultadoLetra = 'A';
+          this.centralesRiesgo.respuestaLetra =res.ResultadoLetra;
           this.respuesta = res.Resultado;
           this.letraMensaje = res.ResultadoLetra;
           this.centralesRiesgo.cargador = false;
@@ -310,7 +310,7 @@ export class FormularioViabilizacionComponent implements OnInit {
     }
     if (letraMensaje === 'B') {
       if (this.scanParams.enriquecido == true ){
-        this.centralesRiesgo.sendWhatsapp = true;//Joan Ultimo
+        this.centralesRiesgo.sendWhatsapp = true;
         this.sendWhatsapp = true;
         this.VarianteAprobado = 'sendWhatsapp';
         this.validarTituloModalRespuesta();
@@ -319,7 +319,7 @@ export class FormularioViabilizacionComponent implements OnInit {
     }
     if (letraMensaje === 'C' ) {
       if( this.scanParams.enriquecido == true){
-        this.centralesRiesgo.sendMail = true;//Ultimo Joan
+        this.centralesRiesgo.sendMail = true;
         this.sendMail = true;
          this.VarianteAprobado = 'sendMail';
          this.validarTituloModalRespuesta();
