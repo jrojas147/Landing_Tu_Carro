@@ -279,40 +279,28 @@ export class FormularioViabilizacionComponent implements OnInit {
         this.centralesRiesgo.apiModular(this.contacto).subscribe((res: any) => {
           this.centralesRiesgo.respuestaId = res.IdResultado;
           //test
-          res.ResultadoLetra = 'D';
+          res.ResultadoLetra = 'C';//
           this.centralesRiesgo.respuestaLetra =res.ResultadoLetra;
           this.respuesta = res.Resultado;
           this.letraMensaje = res.ResultadoLetra;
           this.centralesRiesgo.cargador = false;
-
           this.AccionMensaje(this.letraMensaje);
-
-
-          //Test
-          //  this.letraMensaje = 'A';
-          //  this.scanParams.enriquecido = true;
-          // this.AccionMensaje(this.letraMensaje);
         });
       }
     });
   }
 
   AccionMensaje(letraMensaje){
-    let validacion = this.contacto
     if (letraMensaje === 'A') {
       if (this.scanParams.enriquecido == true){
-        this.centralesRiesgo.sendWhatsapp = true;//Joan Ultimo
-        this.sendWhatsapp = true;//
-        this.VarianteAprobado = 'sendWhatsapp';
+        this.centralesRiesgo.sendWhatsapp = true;
         this.validarTituloModalRespuesta();
         this.procesarModalRespuesta();
       }
     }
-    if (letraMensaje === 'C') {
+    if (letraMensaje === 'B') {
       if (this.scanParams.enriquecido == true ){
         this.centralesRiesgo.sendWhatsapp = true;
-        this.sendWhatsapp = true;
-        this.VarianteAprobado = 'sendWhatsapp';
         this.validarTituloModalRespuesta();
         this.procesarModalRespuesta();
       }
@@ -321,7 +309,6 @@ export class FormularioViabilizacionComponent implements OnInit {
       if( this.scanParams.enriquecido == true){
         this.centralesRiesgo.sendMail = true;
         this.sendMail = true;
-         this.VarianteAprobado = 'sendMail';
          this.validarTituloModalRespuesta();
          this.procesarModalRespuesta();
 
@@ -329,31 +316,23 @@ export class FormularioViabilizacionComponent implements OnInit {
     }
   }
 
-  cargarParametros(): string{
-    let LetraRespuesta: string;
-    LetraRespuesta = this.letraMensaje;
-    return LetraRespuesta;
-  }
-
   validarTituloModalRespuesta():void{
-    if ( this.VarianteAprobado =='sendMail' ){
-      this.TituloModRespuesta = 'Credito Pre-Aprobado';
+    if ( this.centralesRiesgo.sendWhatsapp){
+      this.TituloModRespuesta = 'Credito Aprobado';
       this.MensajeModRespuesta = 'Estas a punto de cumplir tus sueños, para finalizar solo tienes que diligenciar el siguiente formato. Te estaremos contactando pronto';
     }
-    if ( this.VarianteAprobado =='sendWhatsapp' ){
+    if ( this.centralesRiesgo.sendMail){
       this.TituloModRespuesta = 'Credito Pre-Aprobado';
       this.MensajeModRespuesta = 'Estas a punto de cumplir tus sueños, te estamos contactando con nuestro asesor mediante WhatsApp';
     }
   }
 
-  procesarModalRespuesta(): void{//Carga primer modal
+  procesarModalRespuesta(): void{
     const dialogRef =this.dialog.open(ModalComponent, {
       data: {
       datacentrales : this.contacto,
       Titulo: this.TituloModRespuesta,
       Mensaje: this.MensajeModRespuesta,
-      sentEmail: this.sendMail,
-      sendWhatsapp: this.sendWhatsapp,
       tipoModal: 'Generico',
       ejecutarFormularioPreaprobado: this.ejecutarFormularioPreaprobado,
       },
@@ -387,4 +366,5 @@ export class FormularioViabilizacionComponent implements OnInit {
       console.log(result);
     })
   }
+
 }

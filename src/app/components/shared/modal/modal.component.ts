@@ -10,6 +10,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, Validators } from '@a
 import * as moment from 'moment';
 import { FormularioPreAprobadoServiceService } from 'src/app/services/formulario-pre-aprobado.service.service';
 import { ModalinfoComponent } from '../modal-Info/modalinfo.component';
+import { CentralesRiesgoService } from 'src/app/services/centrales-riesgo.service';
 
 
 
@@ -25,21 +26,14 @@ export class ModalComponent implements OnInit {
   const = constantes;
   titulovalidado: string;
   mensajevalidado: string;
-  // tipoModal: string = 'Generico'
-  // modalGenerico: boolean = false;
-  // modalPreaprobado: boolean =false;
-  // wppba: boolean;
-  // empba:boolean;
   formulario_Empleado: FormGroup;//
   Independiente = false;//
   messageBody: string = '';//
   stepFinish: boolean;//
   maxDate = new Date();
   MinDate = moment().subtract(80, 'year');
-  // dialog: any;
-  ejecutarFormularioPreaprobado: boolean;
+  ejecutarFormularioPreaprobado: boolean = false;
   confirmSalir: boolean = false;
-  //Modal Info
   ModalConfirmSalir: boolean = false;
   ModalAvisoDocumentos: boolean = false;
   tituloModalInfo: string = '';
@@ -52,27 +46,23 @@ export class ModalComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<ModalComponent>,
+    public DataFormualrioPreaprobado: FormularioPreAprobadoServiceService,
+    public centralesRiesgo: CentralesRiesgoService,
+    private fb: FormBuilder,
+    private http: HttpClient,
     @Inject(MAT_DIALOG_DATA) public dataModRespuesta: {
+      datacentrales : any,
       Titulo: string,
       Mensaje: string,
-      sentEmail: boolean,
-      sendWhatsapp: boolean,
-      tipoModal: string,//Confirmar  Eliminar
-      datacentrales : any,
-      ejecutarFormularioPreaprobado: boolean,
-      actividadEconomicaValue: number;
-     },
-      private fb: FormBuilder,//
-      private http: HttpClient,//
-      public DataFormualrioPreaprobado: FormularioPreAprobadoServiceService
-     ) {//
-  }
+      tipoModal: string,
+     }
+     ) {  }
 
-  ngOnInit() {
+  ngOnInit(): void {
      this.dirigirWhatsapp();
-     const Pba = this.dataModRespuesta.datacentrales;
+     this.dirigirForPreAprobado();
+     this.initFormulario_Empleados();
      this.Independiente = this.dataModRespuesta.datacentrales.DatosFinancieros.ActividadEconomica === 2 ? true : false;
-     this.initFormulario_Empleados();//
   }
 
   initFormulario_Empleados() {
@@ -163,27 +153,36 @@ export class ModalComponent implements OnInit {
       event.preventDefault();
     }
   }
-  //Chat Whatsapp
-  ConectarWhatsapp() {
-    window.open("https://cariai.com/santanderdigitalchannel/santanderdigitalchannel");
-  }
 
   dirigirWhatsapp(){
-    if( this.dataModRespuesta.sendWhatsapp === true ){
+        if (this.centralesRiesgo.sendWhatsapp){
       setTimeout( () => {
         this.ConectarWhatsapp();
       },5000)
     }
   }
 
-  procesarFormulario(){
-    this.dataModRespuesta.ejecutarFormularioPreaprobado = true;
-    this.dialogRef.close(this.dataModRespuesta.ejecutarFormularioPreaprobado)
+  ConectarWhatsapp() {
+    window.open("https://cariai.com/santanderdigitalchannel/santanderdigitalchannel");
   }
 
+  dirigirForPreAprobado(){
+    if (this.centralesRiesgo.sendMail){
+      setTimeout( () => {
+        this.procesarFormulario();
+      },5000)
+    }
+  }
+
+  procesarFormulario(){
+    this.dataModRespuesta.tipoModal = 'FormularioPreAprobado';
+    this.dialogRef.close(this.ejecutarFormularioPreaprobado = true)
+ }
+
   ConfirmacionSalir(){
+    debugger;
     this.confirmSalir = true;
-    this.dataModRespuesta.tipoModal = ''
+    this.dataModRespuesta.tipoModal = ''////
   }
    cerrar(): void {
      this.dialogRef.close();
@@ -191,9 +190,9 @@ export class ModalComponent implements OnInit {
 
    ProcesarSalir(){
     this.ModalAvisoDocumentos = false;
-   this.ModalConfirmSalir = true;
-   this.mensajeModalInformativo();
-   this.ejecutarModalAvisoSalir();
+    this.ModalConfirmSalir = true;
+    this.mensajeModalInformativo();
+    this.ejecutarModalAvisoSalir();
  }
 
  ProcesarAvisoDocumentos(){

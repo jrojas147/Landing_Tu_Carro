@@ -287,8 +287,8 @@
           align-items: center;
       }
       @include smallTablet{
-        line-height: 25px;
-        display: inline;
+        // line-height: 25px;
+        // display: inline;
       }
       @include tabletLaptop(){
         grid-template-columns: 37% 37% 37%;
@@ -303,17 +303,17 @@
         @include Minim{
             position: relative;
             top: 0px;
-            left: 20px;
+            left: 24%;
         }
         @include Asmall{
             position: relative;
-            top: -5px;
-            left: 125px;
+            top: 0px;
+            left: 55%;
         }
         @include smallTablet{
             position: relative;
-            top: -10px;
-            left: 150px;
+            top: 20px;
+            left: 100%;
         }
       }
       .BtnSalirFormulario{
@@ -331,13 +331,13 @@
         @include Asmall{
             align-items: center;
             position: relative;
-            top: 40px;
-            left: 55px;
+            top: 0px;
+            left: 80%;
         }
         @include smallTablet{
             position: relative;
-            top: -10px;
-            left: 11px;
+            top: 15px;
+            left: 115%;
         }
       }
       .acctions-button {

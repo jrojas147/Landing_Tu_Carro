@@ -9,10 +9,10 @@
     </div>
     <div class="body">{{dataModRespuesta.Mensaje}}</div><br>
     <div class="contBotonPaso">
-      <div class="BtonAccion" *ngIf="dataModRespuesta.sendWhatsapp" >
+      <div class="BtonAccion" *ngIf="centralesRiesgo.sendWhatsapp" >
         <button mat-button color="primary" (click)="ConectarWhatsapp()">Chatear Asesor</button>
       </div>
-      <div class="BtonAccion" *ngIf="dataModRespuesta.sentEmail" >
+      <div class="BtonAccion" *ngIf="centralesRiesgo.sendMail" >
         <button mat-button color="primary" (click)="procesarFormulario()">Diligenciar Formulario</button>
       </div>
       <div class="BtnSalir">

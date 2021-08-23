@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiMercadolibreService } from 'src/app/services/api-mercadolibre.service';
 import { constantes } from 'src/constants/constantes';
 
 @Component({
@@ -8,4 +9,7 @@ import { constantes } from 'src/constants/constantes';
 })
 export class NoFinanciableComponent {
   const = constantes;
+  constructor(public apiMercadolibre: ApiMercadolibreService){
+
+  }
 }
