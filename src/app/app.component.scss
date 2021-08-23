@@ -28,40 +28,40 @@
          }
      }
 
-/*.superContenedor{
-  background-color:beige;
+// .superContenedor{
+//   background-color:beige;
 
-  @include Minim{
-    background-color: deepskyblue;
-  }
+//   @include Minim{
+//     background-color: deepskyblue;
+//   }
 
-  @include Asmall{
-    background-color: rgb(1, 1, 12);
-  }
-  @include smallTablet{
-    background-color: blueviolet;
-  }
+//   @include Asmall{
+//     background-color: rgb(1, 1, 12);
+//   }
+//   @include smallTablet{
+//     background-color: blueviolet;
+//   }
 
-  @include tabletLaptop{
-    background-color: cadetblue;
-  }
+//   @include tabletLaptop{
+//     background-color: cadetblue;
+//   }
 
-  @include laptopDesktop{
-    background-color: chartreuse;
-  }
+//   @include laptopDesktop{
+//     background-color: chartreuse;
+//   }
 
-  @include IpadPro{
-    background-color: darkcyan;
-  }
+//   @include IpadPro{
+//     background-color: darkcyan;
+//   }
 
-  @include desktopFull{
-    background-color: darkred;
-  }
+//   @include desktopFull{
+//     background-color: darkred;
+//   }
 
-  @include full{
-    background-color: deeppink;
-  }
-}*/
+//   @include full{
+//     background-color: deeppink;
+//   }
+// }
 
 .msjEnriquecido{
     margin: 20px 30px 30px 30px;

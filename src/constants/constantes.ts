@@ -83,6 +83,15 @@ export const constantes = {
     /* Credenciales */
     userpass: "VAB1AEMAYQByAHIAbwA6AHQAdQBDAEAAcgByADAAMgAwADEAOQA=",
     /* Imagenes */
+    logoMercadolibre: './assets/logouno.png',
+    logoSantanderGris: './assets/consumerFinanceGris.png',
+    logoSantanderRojo: './assets/consumerFinancing.png',
+
+
+
+
+
+
     logoCliente: './assets/logouno.png',
     logoBanco: './assets/logodos.png',
     logoBancoRojo: './assets/logotres.png',

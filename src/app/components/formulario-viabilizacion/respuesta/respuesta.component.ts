@@ -70,6 +70,7 @@ export class RespuestaComponent implements OnInit {
   }
 
   procesarModalPreaprobado(){
+    debugger;
     const dialogRef =this.dialog.open(ModalComponent, {
       data: {
        datacentrales: this.formularioViable.contacto,

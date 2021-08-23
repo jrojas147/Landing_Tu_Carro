@@ -49,7 +49,7 @@ export class FormularioViabilizacionComponent implements OnInit {
   VarianteAprobado: string;
   TituloModRespuesta: string;
   MensajeModRespuesta: string;
-  ejecutarFormularioPreaprobado: boolean = false;//Validar Funcionalidad
+  ejecutarFormularioPreaprobado: boolean = false;
   respuesta: string = '';
 
 
@@ -279,7 +279,7 @@ export class FormularioViabilizacionComponent implements OnInit {
         this.centralesRiesgo.apiModular(this.contacto).subscribe((res: any) => {
           this.centralesRiesgo.respuestaId = res.IdResultado;
           //test
-          res.ResultadoLetra = 'C';//
+          res.ResultadoLetra = 'E';
           this.centralesRiesgo.respuestaLetra =res.ResultadoLetra;
           this.respuesta = res.Resultado;
           this.letraMensaje = res.ResultadoLetra;
@@ -334,6 +334,8 @@ export class FormularioViabilizacionComponent implements OnInit {
       Titulo: this.TituloModRespuesta,
       Mensaje: this.MensajeModRespuesta,
       tipoModal: 'Generico',
+      sentEmail: this.sendMail,
+      sendWhatsapp: this.sendWhatsapp,
       ejecutarFormularioPreaprobado: this.ejecutarFormularioPreaprobado,
       },
       disableClose : true,
@@ -349,6 +351,7 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   procesarModalPreaprobado(){
+    debugger;
     const dialogRef =this.dialog.open(ModalComponent, {
       data: {
         datacentrales : this.contacto,
@@ -356,7 +359,7 @@ export class FormularioViabilizacionComponent implements OnInit {
         Mensaje: "Falta poco, Ingresa tus datos para finalizar",
         tipoModal: 'FormularioPreAprobado',
       },
-      disableClose : true,
+    //  disableClose : true,
       height: '700px',
       width: '680px',
 

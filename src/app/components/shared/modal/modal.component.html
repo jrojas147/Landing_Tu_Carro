@@ -2,7 +2,7 @@
   <div *ngIf="dataModRespuesta.tipoModal === 'Generico'" class="modal-Generico">
     <div class="encabezado">
       <div class="Imagenes">
-        <img class="LogoSantander" [src]="const.logoBancoRojo" alt="">
+        <img class="LogoSantander" [src]="const.logoSantanderRojo" alt="">
         <img class="LogoMeli" [src]="const.logoMobile" alt="">
       </div>
       <div class="titulo">{{dataModRespuesta.Titulo}}</div><br>
@@ -22,7 +22,7 @@
   </div>
   <div *ngIf="dataModRespuesta.tipoModal === 'FormularioPreAprobado'" class="modal-preaprobado">
     <div class="contLogo">
-      <img [src]="const.logoBancoRojo" alt="">
+      <img class="LogoSantander" [src]="const.logoSantanderRojo" alt="">
       <div class="Titulo">"Falta poco" Ingresa tus datos para finalizar</div><br>
     </div>
     <form [formGroup]="formulario_Empleado">

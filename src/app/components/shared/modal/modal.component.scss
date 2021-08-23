@@ -42,19 +42,26 @@
       @include Asmall() {
         text-align: center;
       }
+
       .LogoSantander{
-        width: 60%;
+        width: 55% !important;
         justify-self: center;
         @include Minim{
-            width: 75%;
+          display: none;
         }
         @include Asmall{
             width: 65%;
+        }
+        @include tabletLaptop{
+          width: 12%;
         }
       }
       .LogoMeli{
         align-self: center;
         justify-self: center;
+        @include Minim{
+          display: none;
+        }
       }
     }
     .titulo{
@@ -104,7 +111,7 @@
       @include Minim{
           position: relative;
           top: -20px;
-          left: 20px;
+          left: 12%;
       }
       @include Asmall{
           position: relative;
@@ -127,7 +134,7 @@
       @include Minim{
           position: relative;
           top: -23px;
-          left: -7px;
+          left: -5%;
       }
       @include Asmall{
           align-items: center;
@@ -162,6 +169,10 @@
   }
 
   .modal-preaprobado{
+    .LogoSantander{
+      width: 14%;
+    }
+
     .DatosNacimiento{
       display: grid;
       grid-template-columns: repeat(2, auto);

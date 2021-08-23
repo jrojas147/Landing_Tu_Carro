@@ -3,7 +3,7 @@
 
 
 .contenedor{
-    background-color: $color-principal;
+  // background-color: $color-principal;
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr;
@@ -13,14 +13,14 @@
         grid-template-columns: 1fr auto 1fr;
         grid-template-rows: 1fr;
         grid-gap: 10px;
-                img{
-                  @include Minim(){
-                    width: 70%;
-                }
-                    @include Asmall(){
-                        width: 70%;
-                    }
-            }
+          img{
+             @include Minim(){
+                width: 70%;
+             }
+             @include Asmall(){
+                width: 50%;
+             }
+          }
     }
 }
 
@@ -41,18 +41,47 @@
         justify-self: center;
     }
 }
-.std{
+.logoSantander{
     grid-column: 3;
     grid-row: 1;
     align-self: center;
     justify-self: left;
-    text-align: center;
     @include Minim(){
       justify-self: center;
   }
     @include Asmall(){
         justify-self: center;
     }
+    @include full{
+        justify-self: left;
+    }
+}
+
+.logoRojo{
+  @include Minim(){
+    width: 80%;
+ }
+ @include Asmall(){
+    width: 50%;
+ }
+ @include smallTablet{
+    width: 45% !important;
+ }
+ @include tabletLaptop{
+  width: 40%;
+ }
+ @include laptopDesktop {
+  width: 35%;
+ }
+ @include IpadPro {
+  width: 35%;
+ }
+ @include desktopFull{
+  width: 27%;
+ }
+ @include full{
+  width: 20%;
+ }
 }
 
 .vl{

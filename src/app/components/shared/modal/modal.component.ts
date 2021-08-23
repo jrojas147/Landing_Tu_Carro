@@ -55,6 +55,8 @@ export class ModalComponent implements OnInit {
       Titulo: string,
       Mensaje: string,
       tipoModal: string,
+      sentEmail: boolean,
+      sendWhatsapp: boolean,
      }
      ) {  }
 
@@ -93,7 +95,6 @@ export class ModalComponent implements OnInit {
     });
   }
 
-
   onsubmit() {
     const datosFormulario = this.formulario_Empleado.value;
     this.messageBody = '¡Estoy a punto de cumplir mi sueño!' + '\n' + '\n';
@@ -105,7 +106,7 @@ export class ModalComponent implements OnInit {
       this.tipoDocumento = "Cédula de Extranjería"}
     if ( this.dataModRespuesta.datacentrales.DatosBasicos.TipoDocumento === 3 ){
       this.tipoDocumento = "NIT"}
-    this.messageBody = this.messageBody + 'Tipo Documento:  ' + this.tipoDocumento +  '\n';
+      this.messageBody = this.messageBody + 'Tipo Documento:  ' + this.tipoDocumento +  '\n';
     this.messageBody = this.messageBody + 'Número Documento:  ' + this.dataModRespuesta.datacentrales.DatosBasicos.NumeroDocumento + '\n';
     if ( this.dataModRespuesta.datacentrales.DatosFinancieros.ActividadIndependiente === 15 ){
       this.actividadEconomica = "Pensionado"}
@@ -167,7 +168,7 @@ export class ModalComponent implements OnInit {
   }
 
   dirigirForPreAprobado(){
-    if (this.centralesRiesgo.sendMail){
+    if (this.dataModRespuesta.sentEmail){
       setTimeout( () => {
         this.procesarFormulario();
       },5000)
@@ -244,7 +245,7 @@ ejecutarModalAvisoDocumentos(){
       tipoModalDocumentos : this.ModalAvisoDocumentos
     },
     disableClose : true,
-     height: '260px',
+     height: '290px',
      width: '570px',
   });
   dialogRef.afterClosed().subscribe(result  =>{
