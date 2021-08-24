@@ -278,8 +278,8 @@ export class FormularioViabilizacionComponent implements OnInit {
         }
         this.centralesRiesgo.apiModular(this.contacto).subscribe((res: any) => {
           this.centralesRiesgo.respuestaId = res.IdResultado;
-          //test
-          res.ResultadoLetra = 'C';
+              //test
+                res.ResultadoLetra = 'C';
           this.centralesRiesgo.respuestaLetra =res.ResultadoLetra;
           this.respuesta = res.Resultado;
           this.letraMensaje = res.ResultadoLetra;
@@ -317,12 +317,12 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   validarTituloModalRespuesta():void{
-    if ( this.centralesRiesgo.sendWhatsapp){
-      this.TituloModRespuesta = 'Credito Aprobado';
-      this.MensajeModRespuesta = 'Estas a punto de cumplir tus sueños, para finalizar solo tienes que diligenciar el siguiente formato. Te estaremos contactando pronto';
-    }
     if ( this.centralesRiesgo.sendMail){
       this.TituloModRespuesta = 'Credito Pre-Aprobado';
+      this.MensajeModRespuesta = 'Estas a punto de cumplir tus sueños, para finalizar solo tienes que diligenciar el siguiente formato. Te estaremos contactando pronto';
+    }
+    if ( this.centralesRiesgo.sendWhatsapp){
+      this.TituloModRespuesta = 'Credito Aprobado';
       this.MensajeModRespuesta = 'Estas a punto de cumplir tus sueños, te estamos contactando con nuestro asesor mediante WhatsApp';
     }
   }
