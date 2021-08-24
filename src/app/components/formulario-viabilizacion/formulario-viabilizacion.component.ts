@@ -279,7 +279,7 @@ export class FormularioViabilizacionComponent implements OnInit {
         this.centralesRiesgo.apiModular(this.contacto).subscribe((res: any) => {
           this.centralesRiesgo.respuestaId = res.IdResultado;
               //test
-                res.ResultadoLetra = 'C';
+                res.ResultadoLetra = 'A';
           this.centralesRiesgo.respuestaLetra =res.ResultadoLetra;
           this.respuesta = res.Resultado;
           this.letraMensaje = res.ResultadoLetra;
@@ -351,7 +351,6 @@ export class FormularioViabilizacionComponent implements OnInit {
   }
 
   procesarModalPreaprobado(){
-    debugger;
     const dialogRef =this.dialog.open(ModalComponent, {
       data: {
         datacentrales : this.contacto,

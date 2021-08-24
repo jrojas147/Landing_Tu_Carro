@@ -58,9 +58,7 @@ export class RespuestaComponent implements OnInit {
   ngOnInit() {
   }
 
-
   validarLetra(){
-    debugger;
     this.letrica = this.formularioViable.letraMensaje;
     console.log(`la letra es ${this.letrica}`)
   }
@@ -70,7 +68,6 @@ export class RespuestaComponent implements OnInit {
   }
 
   procesarModalPreaprobado(){
-    debugger;
     const dialogRef =this.dialog.open(ModalComponent, {
       data: {
        datacentrales: this.formularioViable.contacto,

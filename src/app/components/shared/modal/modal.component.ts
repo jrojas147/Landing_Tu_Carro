@@ -181,9 +181,8 @@ export class ModalComponent implements OnInit {
  }
 
   ConfirmacionSalir(){
-    debugger;
     this.confirmSalir = true;
-    this.dataModRespuesta.tipoModal = ''////
+    this.dataModRespuesta.tipoModal = ''
   }
    cerrar(): void {
      this.dialogRef.close();
