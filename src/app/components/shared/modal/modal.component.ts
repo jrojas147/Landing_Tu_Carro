@@ -63,8 +63,8 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
      this.dirigirWhatsapp();
      this.dirigirForPreAprobado();
-     this.initFormulario_Empleados();
      this.Independiente = this.dataModRespuesta.datacentrales.DatosFinancieros.ActividadEconomica === 2 ? true : false;
+     this.initFormulario_Empleados();
   }
 
   initFormulario_Empleados() {
