@@ -6,12 +6,18 @@
     grid-template-columns: auto 1fr;
     grid-gap: 10px;
     div, img{
+        width: 100% !important;//
         align-self: center;
         justify-self: left;
+        .logoM{
+          width: 15%;
+          height: 55px;
+        }
         p{
             font-size: 10px;
             color: $color-grisDos;
             text-align: justify;
+            grid-template-columns: 50px 1fr;//
         }
     }
 }

@@ -86,6 +86,7 @@ export const constantes = {
     logoMercadolibre: './assets/logouno.png',
     logoSantanderGris: './assets/consumerFinanceGris.png',
     logoSantanderRojo: './assets/consumerFinancing.png',
+    logoSantanerGris: './assets/santander_financing_gris.png',
 
 
 

@@ -279,7 +279,7 @@ export class FormularioViabilizacionComponent implements OnInit {
         this.centralesRiesgo.apiModular(this.contacto).subscribe((res: any) => {
           this.centralesRiesgo.respuestaId = res.IdResultado;
               //test
-                res.ResultadoLetra = 'C';
+              //  res.ResultadoLetra = 'C';
           this.centralesRiesgo.respuestaLetra =res.ResultadoLetra;
           this.respuesta = res.Resultado;
           this.letraMensaje = res.ResultadoLetra;
@@ -358,7 +358,7 @@ export class FormularioViabilizacionComponent implements OnInit {
         Mensaje: "Falta poco, Ingresa tus datos para finalizar",
         tipoModal: 'FormularioPreAprobado',
       },
-    //  disableClose : true,
+      disableClose : true,
       height: '700px',
       width: '680px',
 
