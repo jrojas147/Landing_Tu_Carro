@@ -12,7 +12,7 @@
             ¡Felicitaciones! Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado haciendo click en el botón o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592
           </p>
         </div>
-        <div class="caso" *ngIf="centralesRiesgo.respuestaLetra ===  'B' && scanParams.enriquecido">
+        <div class="caso" *ngIf="centralesRiesgo.respuestaLetra ===  'B' || centralesRiesgo.respuestaLetra ===  'C' && scanParams.enriquecido">
           <img [src]="const.aprobado" alt="aprobado">
           <p class="mensaje">
               Aprobado
@@ -22,7 +22,7 @@
             ¡Felicitaciones! Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado haciendo click en el botón o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592
           </p>
         </div>
-       <div class="caso" *ngIf="centralesRiesgo.respuestaLetra ===  'C' && scanParams.enriquecido">
+       <!-- <div class="caso" *ngIf="centralesRiesgo.respuestaLetra ===  'C' && scanParams.enriquecido">
           <img [src]="const.aprobado" alt="aprobado">
           <p class="mensaje">
               Pre-Aprobado<br>
@@ -38,7 +38,7 @@
               Recuerda que puedes consultar toda la documentación requerida para obtener tu crédito vehicular haciendo clic aquí. <a href="https://santanderfinancing.com/requerimientos-credito//">https://santanderfinancing.com/requerimientos-credito/</a>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="caso" *ngIf="centralesRiesgo.respuestaLetra ===  'D' && scanParams.enriquecido">
           <img [src]="const.negado" class="negado">
           <p class="mensajeNeg">
