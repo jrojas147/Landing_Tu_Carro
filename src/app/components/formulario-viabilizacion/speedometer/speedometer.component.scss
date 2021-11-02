@@ -20,6 +20,11 @@
     color: $color-grisDos;
     text-align: center;
   }
+  .textoVariacionCredito{
+    font-size: 10px;
+    color: $color-grisDos;
+    text-align: center;
+  }
   .radioGroup {
     margin-bottom: 0%;
     @include Minim{
